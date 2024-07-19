@@ -1,6 +1,6 @@
 import { Cliente } from "./cliente";
 
-class Conta {
+export class Conta {
   private clienteId : string | null = null;
   private saldo: number;
   saque: ISaque;
