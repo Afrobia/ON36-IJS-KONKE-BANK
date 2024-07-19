@@ -13,17 +13,20 @@ Tem como objetivo criar um banco comunitário para comunidades quilombolas. Este
  - Reforço da compreensão sobre como diagramas podem ser úteis para visualizar a estrutura e o relacionamento entre classes em um sistema.
 
 ## Desafio 02 - {Reprograma}Bank
-    Seu desafio é criar classes e interfaces apropriadas para representar clientes, suas contas bancárias e implementar métodos para interagir com esses dados, como criar uma nova conta para um cliente, depositar, sacar, transferir dinheiro entre contas, etc.
-
+ 
 Abaixo estão os requisitos:
-* Cada cliente do banco deve ter as seguintes informações:
+* Cada cliente do banco tem as seguintes informações:
   - Nome completo
   - Número de identificação (ID)
-  - Endereço
+  - Endereço = classe Endereco
   - Número de telefone
 
 * Requisitos de negócio:
-  - Cada cliente pode ter uma ou mais contas bancárias.
+  - Cada cliente pode ter uma ou mais contas bancárias.  
+  - As contas podem ser do tipo Conta Corrente ou Conta Poupança.
+  - Para a conta corrente, armazenar o limite do cheque especial.
+  - Para a conta poupança, é armazenar a taxa de juros.
+  - As Contas podem fazer tranferencia e saque deposito 
 
 ## SERVIÇOS FINANCEIROS QUE PRETENDE SER OFERECIDO
 
@@ -39,9 +42,9 @@ Abaixo estão os requisitos:
 - Prestação de contas diário e semanal para toda a comunidade
 
 
-
-- Nesse primeiro commit crie as classe Cliente e Classe Conta  e vinculei a conta ao id do cliente
-- Criei interfaces para cada transação de saque e deposito, criando classes de saque e depósito, cada comportamento foi atribuido a classe conta.
+## Projeto Inicial 
+- Crie as classe Cliente e Classe Conta  e vinculei a conta ao id do cliente
+- Criei interfaces para cada transações separadamente, crie classes de saque e depósito implementando os comportamentos dependendo do tipo de conta, cada comportamento foi atribuido a classe conta.
 - Ainda serão criadas as classes derivadas da Classe Conta( poupança e corrente), 
 
-# DIAGRAMA PILOTO 2 ( será recriado)
+
