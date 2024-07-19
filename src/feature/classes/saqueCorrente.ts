@@ -13,7 +13,13 @@ class SaqueContaCorrente implements ISaque {
       if (saldo >= valor) {
         const newSaldo = saldo - valor;
         setSaldo(newSaldo);
-      } 
+      } else if((getChequeEspecial+saldo) >= valor){
+        const newSaldo = (getChequeEspecial+saldo) - valor
+        setSaldo(newSaldo)
+      } else {
+        throw Error ('Transação negada, saldo infuciente')
+      }
+        
     }
   }
   
