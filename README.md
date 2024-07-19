@@ -46,7 +46,7 @@ Abaixo estão os requisitos:
 - Criei as classe Cliente e Classe Conta  e vinculei a conta ao id do cliente
 - Criei interfaces para cada transações separadamente, crie classes de saque e depósito implementando os comportamentos dependendo do tipo de conta, cada comportamento foi atribuido a classe conta.
 - Crieis as derivadas da Classe Conta( poupança e corrente), 
--implemente a transferencia nas classes
+- Implementei a transferencia nas classes
 
 ## Diagrama de classes - Sistema Bancário
 
