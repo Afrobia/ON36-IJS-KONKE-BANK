@@ -47,4 +47,6 @@ Abaixo estão os requisitos:
 - Criei interfaces para cada transações separadamente, crie classes de saque e depósito implementando os comportamentos dependendo do tipo de conta, cada comportamento foi atribuido a classe conta.
 - Ainda serão criadas as classes derivadas da Classe Conta( poupança e corrente), 
 
+## Diagrama de classes - Sistema Bancário
 
+![Diagrama de classes - Sistema bancário(projeto piloto)](<docs/diagrama - sistemaBancarip.drawio.png>)
