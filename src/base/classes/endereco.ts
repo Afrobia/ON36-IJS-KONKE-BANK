@@ -1,11 +1,11 @@
 export class Endereco {
-  cep: string;
-  rua: string;
-  numero: number;
-  complemento: string;
-  bairro: string;
-  cidade: string;
-  estado: string;
+  private cep: string;
+  private rua: string;
+  private numero: number;
+  private complemento: string;
+  private bairro: string;
+  private cidade: string;
+  private estado: string;
 
   constructor(
     cep: string,
