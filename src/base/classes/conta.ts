@@ -1,14 +1,13 @@
 import { Cliente } from "./cliente";
 
-export class Conta {
-  private clienteId : string | null = null;
-  private saldo: number;
+export abstract class Conta {
+  clienteId : string | null = null;
+  saldo: number;
   saque: ISaque;
   deposito: IDeposito
   
-  
-  constructor(saldo: number, saque: ISaque, deposito:IDeposito) { 
-    
+  constructor(clienteId: string, saldo: number, saque: ISaque, deposito:IDeposito) { 
+    this.clienteId = clienteId;
     this.saldo = saldo;
     this.saque = saque;
     this.deposito = deposito
@@ -24,6 +23,14 @@ export class Conta {
   }
   doDeposito(valor: number) {
     this.deposito.depositar(valor, this.saldo, this.setSaldo);
+  }
+
+  doTransferencia(valor:number, contaDestinho: Conta){
+    if(valor <= this.saldo){
+      this.doSaque(valor);
+      contaDestinho.doDeposito(valor)
+    }
+    
   }
 
   setSaldo(valor: number) {

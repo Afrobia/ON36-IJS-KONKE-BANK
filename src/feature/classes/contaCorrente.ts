@@ -3,8 +3,13 @@ import { Conta } from "../../base/classes/conta";
 class ContaCorrente extends Conta {
   private chequeEspecial: number;
 
-  constructor(chequeEspecial: number, saldoInicial: number) {
-    super(saldoInicial, new SaqueContaCorrente(), new DepositoContaCorrente());
+  constructor(clienteId: string,chequeEspecial: number, saldoInicial: number) {
+    super(
+      clienteId,
+      saldoInicial,
+      new SaqueContaCorrente(),
+      new DepositoContaCorrente()
+    );
     this.chequeEspecial = chequeEspecial;
   }
 
@@ -12,4 +17,5 @@ class ContaCorrente extends Conta {
     return this.chequeEspecial;
   }
 
+  doTransferencia(valor: number, contaDestinho: Conta): void {}
 }
