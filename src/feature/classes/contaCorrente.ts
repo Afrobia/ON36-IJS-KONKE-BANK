@@ -17,5 +17,6 @@ class ContaCorrente extends Conta {
     return this.chequeEspecial;
   }
 
-  doTransferencia(valor: number, contaDestinho: Conta): void {}
+  doTransferencia(valor: number, clienteId: Conta): void {
+  }
 }

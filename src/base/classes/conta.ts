@@ -3,10 +3,10 @@ import { Cliente } from "./cliente";
 export abstract class Conta {
   private clienteId : string | null = null;
   private saldo: number;
-  private saque: ISaque;
-  private deposito: IDeposito
+  private saque: Saque;
+  private deposito: Deposito
   
-  constructor(clienteId: string, saldo: number, saque: ISaque, deposito:IDeposito) { 
+  constructor(clienteId: string, saldo: number, saque: Saque, deposito:Deposito) { 
     this.clienteId = clienteId;
     this.saldo = saldo;
     this.saque = saque;
