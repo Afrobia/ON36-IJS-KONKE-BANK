@@ -28,5 +28,10 @@ export class ClienteService {
   clientes.push(newCliente)
   this.modificarCliente(clientes)
   return newCliente
-}
+  }
+
+  findAll() {
+    return `This action returns all conta`;
+  }
+ 
 }

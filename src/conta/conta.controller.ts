@@ -1,6 +1,5 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { ContaService } from './conta.service';
-import { UpdateContaDto } from './dto/update-conta.dto';
 import { Conta } from './conta.model';
 
 @Controller('conta')
@@ -9,7 +8,7 @@ export class ContaController {
 
   @Post()
   criarConta(@Body('nomeCliente') nomeCliente: string, @Body('saldo') saldo:number): Conta {
-    return this.contaService.criarConta(nomeCliente, saldo, );
+    return this.contaService.criarConta(nomeCliente, saldo);
   }
   @Get()
   findAll() {
