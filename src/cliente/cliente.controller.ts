@@ -17,12 +17,12 @@ export class ClienteController {
     return this.clienteService.findAll();
   }
 
-  /* @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.clienteService.findOne(+id);
+  @Get(':clienteId')
+  findById(@Param('clienteId') clienteId: number) {
+    return this.clienteService.findById(+clienteId);
   }
 
-  @Patch(':id')
+  /* @Patch(':id')
   update(@Param('id') id: string, @Body() updateClienteDto: UpdateClienteDto) {
     return this.clienteService.update(+id, updateClienteDto);
   }
@@ -30,5 +30,5 @@ export class ClienteController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.clienteService.remove(+id);
-  } */
+  } */ 
 }

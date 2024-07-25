@@ -31,7 +31,17 @@ export class ClienteService {
   }
 
   findAll() {
-    return `This action returns all conta`;
+    return `This action returns all cliente`;
   }
  
+  findById(clienteId: number) {
+    const clientes = this.lerCliente();
+    const cliente = clientes.find(clientes => clientes.clienteId === clienteId);
+
+    if(!cliente){
+      throw new Error(`Cliente ${clienteId} não encontrada`);
+    };
+
+    return cliente;
+  }
 }
