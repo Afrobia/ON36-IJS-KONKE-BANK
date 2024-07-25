@@ -25,10 +25,10 @@ export class ClienteController {
   /* @Patch(':id')
   update(@Param('id') id: string, @Body() updateClienteDto: UpdateClienteDto) {
     return this.clienteService.update(+id, updateClienteDto);
-  }
+  }*/
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.clienteService.remove(+id);
-  } */ 
+  @Delete(':clienteId')
+  removerCliente(@Param('clienteId') clienteId: number) {
+    return this.clienteService.removerCliente(+clienteId);
+  } 
 }

@@ -44,4 +44,13 @@ export class ClienteService {
 
     return cliente;
   }
+
+  removerCliente(clienteId: number):void {
+    const clientes = this.lerCliente()
+    const clienteIndex = clientes.findIndex(clientes => clientes.clienteId === clienteId);
+    
+    clientes.splice(clienteIndex,1);
+    this.modificarCliente(clientes)
+  }
+
 }

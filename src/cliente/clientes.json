@@ -3,12 +3,6 @@
     "clienteId": 1
   },
   {
-    "clienteId": 2,
-    "nome": "Caio Castro",
-    "telefone": "815684623",
-    "endereco": "Rua Rui Barbosa"
-  },
-  {
     "clienteId": 3,
     "nome": "Euvira Lamb",
     "telefone": "5866214444",
