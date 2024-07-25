@@ -1,10 +1,11 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { ContaService } from './conta.service';
 import { Conta } from './conta.model';
+import { TipoConta } from './tipoConta.enum';
 
 @Controller('conta')
 export class ContaController {
-  constructor(private readonly contaService: ContaService) {}
+  /* constructor(private readonly contaService: ContaService) {}
 
   @Post()
   criarConta(@Body('nomeCliente') nomeCliente: string, @Body('saldo') saldo:number): Conta {
@@ -28,5 +29,5 @@ export class ContaController {
   @Delete(':id')
   removerConta(@Param('id') id: number) {
     return this.contaService.removerConta(+id);
-  }
+  } */
 }

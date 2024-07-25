@@ -1,11 +1,17 @@
+import { Conta } from "src/conta/conta.model";
+import { Gerente } from "src/gerente/gerente.model";
+import { Usuario } from "src/usuario/usuario.model";
 
-export class Cliente {
-    clienteId: number;
+export class Cliente extends Usuario{
+    
   constructor(
-    nome: string,
+    id:string,
+    nome:string,
     telefone: string,
     endereco: string,
-    conta: number[] 
-  ) {}
+  ) {
+    super(id,nome);
+  }
+
 }
 

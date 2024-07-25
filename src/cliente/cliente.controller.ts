@@ -8,8 +8,8 @@ export class ClienteController {
   constructor(private readonly clienteService: ClienteService) {}
 
   @Post()
-  criarCliente(@Body('nome') nome:string, @Body('telefone') telefone: string, @Body('endereco') endereco: string) {
-    return this.clienteService.criarCliente(nome, telefone, endereco);
+  criarCliente(@Body('id') id:string, @Body('nome') nome:string, @Body('telefone') telefone: string, @Body('endereco') endereco: string) {
+    return this.clienteService.criarCliente(id, nome, telefone, endereco);
   }
 
   @Get()
@@ -17,18 +17,18 @@ export class ClienteController {
     return this.clienteService.findAll();
   }
 
-  @Get(':clienteId')
-  findById(@Param('clienteId') clienteId: number) {
-    return this.clienteService.findById(+clienteId);
+  @Get(':id')
+  findById(@Param('id') id: string) {
+    return this.clienteService.findById(id);
   }
 
   /* @Patch(':id')
   update(@Param('id') id: string, @Body() updateClienteDto: UpdateClienteDto) {
     return this.clienteService.update(+id, updateClienteDto);
-  }*/
+  } */
 
-  @Delete(':clienteId')
-  removerCliente(@Param('clienteId') clienteId: number) {
-    return this.clienteService.removerCliente(+clienteId);
-  } 
+  @Delete(':id')
+  removerCliente(@Param('id') id: string) {
+    return this.clienteService.removerCliente(id);
+  }  
 }
