@@ -10,6 +10,7 @@ import { ClienteService } from 'src/cliente/cliente.service';
 export class GerenteService {
   private readonly filePath = path.resolve('src/gerente/gerentes.json');
 
+  constructor(private readonly clienteService: ClienteService){}
 
   private lerGerente(): Gerente[] {
     const data = fs.readFileSync(this.filePath, 'utf8');
@@ -20,42 +21,36 @@ export class GerenteService {
     fs.writeFileSync(this.filePath, JSON.stringify(gerentes, null, 2), 'utf8');
   }
 
-  validarGerente = (id:string) =>{
-    const gerentes = this.lerGerente()
-    const gerente = gerentes.find((gerentes) => gerentes.id === id);
-
-    if (!gerente) {
-      throw new Error(`Gerente ${id} não encontrado`);
-    };
-  }
-
-  
   criarGerente(id: string, nome: string, listaClientes: Cliente[]): Gerente {
     const gerentes = this.lerGerente();
     const newGerente = {
       id,
       nome,
-      listaClientes,
+      listaClientes: [],
     };
     gerentes.push(newGerente);
     this.modificarGerente(gerentes);
     return newGerente;
   }
 
-
-  findGerente(id: string) {
+  findGerente(gerenteId: string) {
     const gerentes = this.lerGerente();
-    const gerente = gerentes.find((gerentes) => gerentes.id === id);
+    const gerente = gerentes.find((gerentes) => gerentes.id === gerenteId);
 
     if (!gerente) {
-      throw new Error(`Cliente ${id} não encontrada`);
+      throw new Error(`Cliente ${gerenteId} não encontrada`);
     }
     
     return gerente;
   }
   
- }
-
-  /* 
-  } */
-
+  adicionarListaClientes(id:string,gerenteId:string) {
+    const gerentes = this.lerGerente();
+    const gerente = this.findGerente(gerenteId)
+    const cliente = this.clienteService.findById(id);
+    
+    gerente.listaClientes.push(cliente)
+    this.modificarGerente(gerentes)
+  }
+ 
+}

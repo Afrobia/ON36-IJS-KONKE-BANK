@@ -1,10 +1,11 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable} from '@nestjs/common';
 import { Cliente } from './cliente.model';
 import * as path from 'path';
 import * as fs from 'fs'
 import { ContaService } from 'src/conta/conta.service';
 import { GerenteService } from 'src/gerente/gerente.service';
-import { Conta } from 'src/conta/conta.model';
+import { Gerente } from 'src/gerente/gerente.model';
+
   
 @Injectable()
 export class ClienteService {

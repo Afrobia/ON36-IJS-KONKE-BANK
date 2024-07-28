@@ -4,6 +4,3 @@ interface ContaBancaria {
     tipo: 'corrente' | 'poupanca'
 }
 
-interface Transacao {
-    tipo: 'saque', 'debito', 'transferencia'
-}

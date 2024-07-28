@@ -1,15 +1,15 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { ContaService } from './conta.service';
 import { Conta } from './conta.model';
-import { TipoConta } from './tipoConta.enum';
+
 
 @Controller('conta')
 export class ContaController {
    constructor(private readonly contaService: ContaService) {}
 
   @Post()
-  criarConta( @Body('saldo') saldo:number, @Body('tipo') tipo: TipoConta): Conta {
-    return this.contaService.criarConta(saldo,tipo);
+  criarConta( @Body('saldo') saldo:number, @Body('tipo') tipo:'corrente'|'poupanca', @Body('transacao')transacao: Transacao): Conta {
+    return this.contaService.criarConta(saldo,tipo,transacao);
   }
   @Get()
   findAll() {
