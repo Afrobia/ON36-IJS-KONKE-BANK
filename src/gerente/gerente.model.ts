@@ -4,8 +4,8 @@ import { Usuario } from "src/usuario/usuario.model";
 export class Gerente extends Usuario{
     id:string
     nome: string
-    clientes: Cliente[]
-    constructor(id:string, nome: string, clientes: Cliente[]){
+    listaClientes: Cliente[]
+    constructor(id:string, nome: string, listaClientes: Cliente[]){
         super(id, nome);
     }
 }

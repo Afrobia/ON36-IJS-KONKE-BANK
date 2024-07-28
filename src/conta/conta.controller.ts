@@ -5,11 +5,11 @@ import { TipoConta } from './tipoConta.enum';
 
 @Controller('conta')
 export class ContaController {
-  /* constructor(private readonly contaService: ContaService) {}
+   constructor(private readonly contaService: ContaService) {}
 
   @Post()
-  criarConta(@Body('nomeCliente') nomeCliente: string, @Body('saldo') saldo:number): Conta {
-    return this.contaService.criarConta(nomeCliente, saldo);
+  criarConta( @Body('saldo') saldo:number, @Body('tipo') tipo: TipoConta): Conta {
+    return this.contaService.criarConta(saldo,tipo);
   }
   @Get()
   findAll() {
@@ -21,7 +21,7 @@ export class ContaController {
     return this.contaService.findById(+id);
   }
 
-  @Patch(':id/atualizar-saldo')
+   @Patch(':id/atualizar-saldo')
   atualizarSaldo(@Param('id') id: number, @Body("saldo") newSaldo: number) {
     return this.contaService.atualizarSaldo(+id, newSaldo);
   }
@@ -29,5 +29,6 @@ export class ContaController {
   @Delete(':id')
   removerConta(@Param('id') id: number) {
     return this.contaService.removerConta(+id);
-  } */
+  } 
+  
 }

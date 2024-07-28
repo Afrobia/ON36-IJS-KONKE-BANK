@@ -1,8 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import * as path from 'path';
 import * as fs from 'fs';
 import { Gerente } from './gerente.model';
 import { Cliente } from 'src/cliente/cliente.model';
+import { ClienteService } from 'src/cliente/cliente.service';
 
 
 @Injectable()
@@ -29,12 +30,12 @@ export class GerenteService {
   }
 
   
-  criarGerente(id: string, nome: string, clientes: Cliente[]): Gerente {
+  criarGerente(id: string, nome: string, listaClientes: Cliente[]): Gerente {
     const gerentes = this.lerGerente();
     const newGerente = {
       id,
       nome,
-      clientes,
+      listaClientes,
     };
     gerentes.push(newGerente);
     this.modificarGerente(gerentes);
@@ -49,20 +50,12 @@ export class GerenteService {
     if (!gerente) {
       throw new Error(`Cliente ${id} não encontrada`);
     }
+    
     return gerente;
   }
+  
  }
 
-  /* atualizarSaldo(id:number, newSaldo:number): Conta {
-    const contas = this.lerConta()
-    const conta = contas.find(contas => contas.id === id);
-    
-    if(!conta){
-      throw new Error(`Conta ${id} não encontrada`);
-    };
-    conta.saldo = newSaldo
-    this.modificarConta(contas)
-     
-    return conta
+  /* 
   } */
 

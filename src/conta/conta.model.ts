@@ -1,8 +1,9 @@
-import { TipoConta } from "./tipoConta.enum";
 
-export class Conta {
-  id: number;
+export class Conta implements ContaBancaria {
+  contaId: number;
   saldo: number;
-  tipo: TipoConta
-    constructor(id: number, saldo: number, tipo: TipoConta) {}
+  tipo: "corrente" | "poupanca";
+  transacao: Transacao
+    constructor(contaId: number, saldo: number, tipo:'corrente' | 'poupanca') {}
+  
 }
