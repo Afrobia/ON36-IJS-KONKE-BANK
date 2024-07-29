@@ -1,0 +1,4 @@
+enum TipoUser {
+    gerente,
+    cliente
+}
