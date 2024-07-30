@@ -11,7 +11,7 @@ export class UserCliente implements User {
   telefone: string;
   gerente: UserGerente
   
-  constructor() {
+  constructor(nome:string, endereco: string, telefone: string) {
     this.id = randomUUID()
   }
 }

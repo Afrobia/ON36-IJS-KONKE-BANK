@@ -8,7 +8,7 @@ export class UserGerente implements User {
   telefone: string;
   id: string;
 
-  constructor() {
+  constructor(nome:string, endereco: string, telefone: string) {
     this.id = randomUUID();
   }
 }

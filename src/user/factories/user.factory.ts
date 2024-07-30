@@ -6,9 +6,9 @@ export class UserFactory {
     criarUser(id:string, nome:string, tipo:TipoUser, endereco: string, telefone: string):User{
         switch(tipo) {
             case TipoUser.CLIENTE:
-                return new UserCliente()
+                return new UserCliente(nome,endereco,telefone)
             case TipoUser.GERENTE:
-                return new UserGerente()
+                return new UserGerente(nome,endereco,telefone)
         }
     }
 }
