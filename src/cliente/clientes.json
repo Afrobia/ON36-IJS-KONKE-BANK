@@ -1,0 +1,11 @@
+[
+  {
+    "clienteId": 1
+  },
+  {
+    "clienteId": 3,
+    "nome": "Euvira Lamb",
+    "telefone": "5866214444",
+    "endereco": "Avenida da Vida"
+  }
+]
