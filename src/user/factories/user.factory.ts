@@ -5,9 +5,9 @@ import { UserGerente } from "../model/userGerente.model";
 export class UserFactory {
     criarUser(id:string, nome:string, tipo:TipoUser, endereco: string, telefone: string):User{
         switch(tipo) {
-            case TipoUser.cliente:
+            case TipoUser.CLIENTE:
                 return new UserCliente()
-            case TipoUser.gerente:
+            case TipoUser.GERENTE:
                 return new UserGerente()
         }
     }

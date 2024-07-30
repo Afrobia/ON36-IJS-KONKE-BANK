@@ -1,5 +1,5 @@
 export interface Contas {
     id: number;
-    balance: number;
+    saldo: number;
     tipo: TipoConta
 }
