@@ -3,7 +3,7 @@ import { ContaPoupanca } from '../model/contaPoupanca';
 import { Contas } from '../model/contas.model';
 
 export class ContasFactory {
-  criarConta(id: string, saldo: number, tipo: TipoConta): Contas {
+  criarConta(clienteId: string, saldo: number, tipo: TipoConta): Contas {
     switch (tipo) {
       case TipoConta.CORRENTE:
         return new ContaCorrente();

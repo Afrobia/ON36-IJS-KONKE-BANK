@@ -1,11 +1,19 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Contas } from './model/contas.model';
 import * as path from 'path';
 import * as fs from 'fs'
+import { UserService } from 'src/user/user.service';
 
 @Injectable()
 export class ContasService {
     private readonly filePath = path.resolve('src/conta/contas.json');
+    
+
+    constructor(private readonly userService: UserService) {
+      const contas = this.lerConta();
+      const idCounter =
+        contas.length > 0 ? contas[contas.length - 1].id + 1 : 1;
+    }
 
     private lerConta(): Contas[] {
       const data = fs.readFileSync(this.filePath, 'utf8');
@@ -15,10 +23,16 @@ export class ContasService {
     private modificarConta(contas: Contas[]): void{
     }
   
-    criarConta(saldo: number, tipo: TipoConta): Contas {
+    criarConta(clienteId: string, saldo: number, tipo: TipoConta): Contas {
         const contas = this.lerConta()
+        const cliente = this.userService.findById(clienteId);
+        if (!cliente) {
+          throw new NotFoundException('Cliente não encontrada');
+        }
+    
         const newConta =  {
           id: contas.length> 0? contas[contas.length - 1].id + 1 : 1 ,
+          clienteId,
           saldo,
           tipo
         } ;
