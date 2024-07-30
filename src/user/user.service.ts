@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
-;
 import * as path from 'path';
 import * as fs from 'fs'
 import { User } from './model/user.model';
-import { randomUUID } from 'crypto';
+import { UserCliente } from './model/userCliente.model';
+import { Contas } from 'src/contas/model/contas.model';
 
 @Injectable()
 export class UserService {
-    private readonly filePathUser = path.resolve('src/User/Users.json') 
-    
+    private readonly filePathUser = path.resolve('src/user/users.json') 
+       
   
     private lerUser(): User[] {
       const data = fs.readFileSync(this.filePathUser, 'utf8');
@@ -38,7 +38,6 @@ export class UserService {
   
       users.push(newUser);
       this.modificarUser(users);
-  
       return newUser;
     }
   
@@ -56,7 +55,7 @@ export class UserService {
   
       return user;
     }
-  
+
     removerUser(id: string): void { 
       const users = this.lerUser();
       const userIndex = users.findIndex((users) => users.id === id);
@@ -64,4 +63,5 @@ export class UserService {
       users.splice(userIndex, 1);
       this.modificarUser(users);
     } 
+    
 }
