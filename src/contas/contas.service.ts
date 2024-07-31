@@ -4,15 +4,12 @@ import * as path from 'path';
 import * as fs from 'fs';
 import { UserService } from 'src/user/user.service';
 import { ContasFactory } from './factories/contas.factory';
-import { Saque } from 'src/metodoTransacao/saque/saque.model';
-import { Deposito } from 'src/metodoTransacao/debito/deposito.model';
+
 
 @Injectable()
 export class ContasService {
   private readonly filePath = path.resolve('src/conta/contas.json');
   private id: number;
-  private saque: Saque;
-  private deposito: Deposito;
 
   constructor(
     private readonly userService: UserService,
@@ -51,6 +48,16 @@ export class ContasService {
 
     if (!conta) {
       throw new Error(`Conta ${id} não encontrada`);
+    }
+    return conta;
+  }
+
+  findByCliente(clienteId: string) {
+    const contas = this.lerConta();
+    const conta = contas.find((contas) => contas.clienteId === clienteId);
+
+    if (!conta) {
+      throw new Error(`Conta ${clienteId} não encontrada`);
     }
     return conta;
   }
