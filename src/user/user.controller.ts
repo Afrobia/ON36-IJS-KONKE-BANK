@@ -7,7 +7,7 @@ export class UserController {
 
     @Post()
     criarUser(@Body('id') id:string, @Body('nome') nome:string, @Body('tipo') tipo: TipoUser, @Body('telefone') telefone: string, @Body('endereco') endereco: string) {
-      return this.userService.criarUser(id, nome, tipo, endereco, telefone);
+      return this.userService.criarUser(nome, tipo, endereco, telefone);
     }
   
     @Get()

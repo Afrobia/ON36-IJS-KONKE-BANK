@@ -9,7 +9,7 @@ import { ContasFactory } from './factories/contas.factory';
 @Injectable()
 export class ContasService {
   private readonly filePath = path.resolve('src/conta/contas.json');
-  private id: number;
+ 
 
   constructor(
     private readonly userService: UserService,
@@ -35,7 +35,7 @@ export class ContasService {
       throw new NotFoundException('Cliente não encontrada');
     }
 
-    const newConta = this.contasFactory.criarConta(clienteId, saldo, tipo);
+    const newConta = this.contasFactory.criarConta(cliente.id, saldo, tipo);
     contas.push(newConta);
     this.modificarContas(contas);
 

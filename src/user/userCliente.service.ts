@@ -63,9 +63,19 @@ export class ClienteService extends UserService {
   }
 
   adicionarConta(id: string) {
+    const listaClientes = this.lerCliente()
     const cliente = this.findById(id);
     const conta = this.findConta(id);
 
-    cliente.contas.push(conta);
+    cliente.contas.push(conta)
+    this.modificarCliente(listaClientes)
   }
+
+  getIdGerente(id: string):string {
+    const cliente = this.findById(id)
+    const gerenteId = cliente.gerente.id
+
+    return gerenteId
+  }
+
 }
