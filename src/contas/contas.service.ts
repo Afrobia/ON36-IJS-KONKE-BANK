@@ -94,5 +94,10 @@ export class ContasService {
   doDeposito(valor: number) {
     this.deposito.depositar(valor, this.saldo, this.atualizarSaldo);
   }
+
+  doTransferencia(){
+
+  }
+
   
 }

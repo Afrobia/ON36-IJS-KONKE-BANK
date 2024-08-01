@@ -23,7 +23,7 @@ export class ContasController {
 
    @Patch(':id/atualizar-saldo')
   atualizarSaldo(@Param('id') id: number, @Body("saldo") newSaldo: number) {
-    return this.contaService.atualizarSaldo(+id, newSaldo);
+    return this.contaService.atualizarSaldo();
   }
 
   @Delete(':id')
