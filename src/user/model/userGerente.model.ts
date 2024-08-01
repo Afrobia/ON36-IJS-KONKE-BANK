@@ -7,6 +7,7 @@ export class UserGerente implements User {
   endereco: string;
   telefone: string;
   id: string;
+  listaCliente: User[] = []
 
   constructor(nome:string, endereco: string, telefone: string) {
     this.id = randomUUID();

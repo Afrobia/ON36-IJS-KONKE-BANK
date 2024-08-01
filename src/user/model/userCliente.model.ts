@@ -19,19 +19,4 @@ export class UserCliente implements User {
     this.id = randomUUID()
   }
 
-  private contaService: ContasService;
-  private clienteService: UserService
-
-  encontrarConta(id:string): Contas {
-   return this.contaService.findByCliente(id)
-  }
-  
-  adicionarConta(id:string) {
-    this.clienteService.findById(id)
-    const conta = this.encontrarConta(id)
-
-    this.contas.push(conta);    
-    
-  }
-
 }
