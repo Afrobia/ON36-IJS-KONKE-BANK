@@ -4,16 +4,20 @@ import * as path from 'path';
 import * as fs from 'fs';
 import { UserService } from 'src/user/user.service';
 import { ContasFactory } from './factories/contas.factory';
+import { Saque } from 'src/metodoTransacao/saque/saque.interface';
+import { Deposito } from 'src/metodoTransacao/deposito/deposito.interface';
 
 
 @Injectable()
 export class ContasService {
   private readonly filePath = path.resolve('src/conta/contas.json');
- 
+  private saque: Saque;
+  private deposito: Deposito;
 
   constructor(
     private readonly userService: UserService,
     private readonly contasFactory: ContasFactory,
+    private saldo: number 
   ) {
     const contas = this.lerConta();
     const id = contas.length > 0 ? contas[contas.length - 1].id + 1 : 1;
@@ -28,14 +32,14 @@ export class ContasService {
     fs.writeFileSync(this.filePath, JSON.stringify(contas, null, 2), 'utf8');
   }
 
-  criarConta(clienteId: string, saldo: number, tipo: TipoConta): Contas {
+  criarConta(clienteId: string, saldo: number, tipo: TipoConta,saque:Saque, deposito:Deposito) {
     const contas = this.lerConta();
     const cliente = this.userService.findById(clienteId);
     if (!cliente) {
       throw new NotFoundException('Cliente não encontrada');
     }
 
-    const newConta = this.contasFactory.criarConta(cliente.id, saldo, tipo);
+    const newConta = this.contasFactory.criarConta(cliente.id, saldo, tipo, saque, deposito);
     contas.push(newConta);
     this.modificarContas(contas);
 
@@ -80,17 +84,15 @@ export class ContasService {
     return listaDeContas.reduce((total, conta) => total + conta.saldo, 0);
   }
 
-  atualizarSaldo(id: number, newSaldo: number): Contas {
-    const contas = this.lerConta();
-    const conta = contas.find((contas) => contas.id === id);
+  atualizarSaldo() {
+    return this.saldo
+  }
 
-    if (!conta) {
-      throw new Error(`Conta ${id} não encontrada`);
-    }
-    conta.saldo = newSaldo;
-    this.modificarContas(contas);
-
-    return conta;
+  doSaque(valor: number) {
+   this.saque.sacar(valor,this.saldo, this.atualizarSaldo);
+  }
+  doDeposito(valor: number) {
+    this.deposito.depositar(valor, this.saldo, this.atualizarSaldo);
   }
   
 }

@@ -5,14 +5,16 @@ import * as fs from 'fs';
 import { UserFactory } from "./factories/user.factory";
 import { UserGerente } from "./model/userGerente.model";
 import { ClienteService } from "./userCliente.service";
+import { ContasService } from "src/contas/contas.service";
 
 @Injectable()
 export class GerenteService extends UserService {
   private readonly filePath = path.resolve('src/user/userGerentes.json');
-  private clienteService : ClienteService
+  private clienteService : ClienteService;
+  private contasService: ContasService;
 
-  constructor(GerenteFactory: UserFactory) {
-    super(GerenteFactory);
+  constructor(gerenteFactory: UserFactory) {
+    super(gerenteFactory);
   }
 
   private lerGerente(): UserGerente[] {
