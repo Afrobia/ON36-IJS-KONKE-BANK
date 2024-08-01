@@ -78,4 +78,11 @@ export class ClienteService extends UserService {
     return gerenteId
   }
 
+  findByGerente(gerenteId:string){
+    const clientes = this.lerCliente()
+    const cliente = clientes.find((clientes) => clientes.gerente.id == gerenteId)
+
+    return cliente
+  }
+
 }

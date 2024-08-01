@@ -20,8 +20,8 @@ export class GerenteService extends UserService {
     return JSON.parse(data) as UserGerente[];
   }
 
-  private modificarGerente(Gerentes: UserGerente[]): void {
-    fs.writeFileSync(this.filePath, JSON.stringify(Gerentes, null, 2), 'utf8');
+  private modificarGerente(gerentes: UserGerente[]): void {
+    fs.writeFileSync(this.filePath, JSON.stringify(gerentes, null, 2), 'utf8');
   }
 
   criarGerente(nome: string, endereco: string, telefone: string): UserGerente {
@@ -57,11 +57,13 @@ export class GerenteService extends UserService {
     this.modificarGerente(gerentes);
   }
   
-  findClientes() {
-    return this.clienteService.findAll
+
+  adicionarCliente(id:string){
+    const cliente = this.clienteService.findByGerente(id)
+    const gerente = this.findById(id)
+
+    gerente.listaIdCliente.push(cliente.id)
+    
   }
 
-  vincularCliente(id:string) {
-  
-  }
 }
