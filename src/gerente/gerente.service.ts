@@ -64,7 +64,7 @@ export class GerenteService extends UserService {
 
     gerente.listaIdCliente.push(cliente.id)
     gerentes.push(gerente)
-
+    
     this.modificarGerente(gerentes)
     
   }

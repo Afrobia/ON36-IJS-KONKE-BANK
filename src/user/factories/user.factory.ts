@@ -1,8 +1,8 @@
-import { User } from "../model/user.model";
-import { UserCliente } from "../model/userCliente.model";
-import { UserGerente } from "../model/userGerente.model";
+import { UserCliente } from "src/cliente/userCliente.model";
+import { UserGerente } from "src/gerente/userGerente.model";
 
-export abstract class UserFactory {
+
+export class UserFactory {
 
     criarUser(nome:string, tipo:TipoUser, endereco: string, telefone: string) {
         switch(tipo) {

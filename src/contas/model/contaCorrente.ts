@@ -1,12 +1,22 @@
-import { Contas } from "./contas.model";
+import { Contas } from "./contas.interface";
 
 
 export class ContaCorrente implements Contas{
+    
     id: number;
     clienteId: string;
     saldo: number;
-    saldoChequeEspecial: number
+    tipo:string
+    saldoChequeEspecial: number;
 
-    constructor(){
+    constructor(tipo:string,
+    clienteId: string,
+    saldo: number){
+        this.id
+        this.tipo = tipo
+        this.clienteId = clienteId;
+        this.saldo = saldo
     } 
+    
+    
 }

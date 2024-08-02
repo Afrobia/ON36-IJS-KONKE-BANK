@@ -1,15 +1,19 @@
 
 import { ContaCorrente } from '../model/contaCorrente';
 import { ContaPoupanca } from '../model/contaPoupanca';
+import { Contas } from '../model/contas.interface';
 
 
 export class ContasFactory {
-  criarConta(clienteId: string, saldo: number, tipo: TipoConta) {
+  criarConta( tipo: string, clienteId: string, saldo: number):Contas|ContaCorrente|ContaCorrente {
+    
     switch (tipo) {
-      case TipoConta.CORRENTE:
-        return new ContaCorrente();
-      case TipoConta.POUPANCA:
-        return new ContaPoupanca();
+      case "CORRENTE":
+        return new ContaCorrente(tipo,clienteId,saldo);
+      case "POUPANCA":
+        return new ContaPoupanca(tipo,clienteId,saldo);
     }
   }
+
+  
 }

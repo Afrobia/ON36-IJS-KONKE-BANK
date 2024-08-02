@@ -3,15 +3,12 @@ import * as path from 'path';
 import * as fs from 'fs';
 import { User } from './model/user.model';
 import { UserFactory } from './factories/user.factory';
-import { UserCliente } from './model/userCliente.model';
 
 @Injectable()
 export abstract class UserService {
-  private readonly filePathUser = path.resolve('src/user/users.json');
+  private readonly filePathUser = path.resolve('src/.json/users.json');
 
-  constructor(private readonly userFactory: UserFactory) {
-    const user = this.lerUser();
-  }
+ 
 
   private lerUser(): User[] {
     const data = fs.readFileSync(this.filePathUser, 'utf8');
@@ -28,9 +25,9 @@ export abstract class UserService {
     tipo: TipoUser,
     endereco: string,
     telefone: string,
-  ) {
+  ):User {
     const listaUser = this.lerUser();
-    const newUser = this.userFactory.criarUser(
+    const newUser = this.criarUser(
       nome,
       tipo,
       endereco,

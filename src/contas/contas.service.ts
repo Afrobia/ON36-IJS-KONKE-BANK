@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Contas } from './model/contas.model';
+import { Contas } from './model/contas.interface';
 import * as path from 'path';
 import * as fs from 'fs';
 import { ContasFactory } from './factories/contas.factory';
@@ -29,15 +29,14 @@ export class ContasService {
     fs.writeFileSync(this.filePath, JSON.stringify(contas, null, 2), 'utf8');
   }
 
-  criarConta(clienteId: string, saldo: number, tipo: TipoConta) {
+  criarConta(tipo: string, clienteId: string, saldo: number) {
     const contas = this.lerConta();
-    const cliente = this.clienteService.findById(clienteId);
-    if (!cliente) {
-      throw new NotFoundException('Cliente não encontrada');
-    }
+    const cliente = this.clienteService.findById(clienteId)
 
-    const newConta = this.contasFactory.criarConta(cliente.id, saldo, tipo);
+    const newConta = this.contasFactory.criarConta(tipo, clienteId, saldo);
     contas.push(newConta);
+    cliente.contas.push(newConta)
+    
     this.modificarContas(contas);
 
     return newConta;
@@ -49,16 +48,6 @@ export class ContasService {
 
     if (!conta) {
       throw new Error(`Conta ${id} não encontrada`);
-    }
-    return conta;
-  }
-
-  findByCliente(clienteId: string) {
-    const contas = this.lerConta();
-    const conta = contas.find((contas) => contas.clienteId === clienteId);
-
-    if (!conta) {
-      throw new Error(`Conta ${clienteId} não encontrada`);
     }
     return conta;
   }
@@ -80,7 +69,6 @@ export class ContasService {
 
     return listaDeContas.reduce((total, conta) => total + conta.saldo, 0);
   }
-
 
   /* doSaque(valor: number) {
    this.saque.sacar(valor,this.saldo, this.atualizarSaldo);

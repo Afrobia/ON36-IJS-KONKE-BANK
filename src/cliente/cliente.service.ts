@@ -1,10 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import * as path from 'path';
 import * as fs from 'fs';
-import { Contas } from 'src/contas/model/contas.model';
 import { ContasService } from 'src/contas/contas.service';
-
-import { UserFactory } from 'src/user/factories/user.factory';
 import { UserService } from 'src/user/user.service';
 import { UserCliente } from './userCliente.model';
 
@@ -26,12 +23,21 @@ export class ClienteService extends UserService{
     criarCliente(nome: string, endereco: string, telefone: string): UserCliente {
       const listaClientes = this.lerCliente();
       const newCliente = new UserCliente(nome, endereco, telefone);
-  
+    
       listaClientes.push(newCliente);
       this.modificarCliente(listaClientes);
   
       return newCliente;
     }
+
+    clienteTemConta(id:string) {
+      const cliente = this.findById(id)
+      if(cliente.contas.length == 0){
+        return "Cliente não tem conta ainda"
+      }
+      return cliente.contas
+    }
+    
   
     findAll(): UserCliente[] {
       return this.lerCliente();
@@ -56,19 +62,6 @@ export class ClienteService extends UserService{
       this.modificarCliente(clientes);
     }
   
-    findConta(id: string): Contas {
-      return this.contaService.findByCliente(id);
-    }
-  
-    adicionarConta(id: string) {
-      const listaClientes = this.lerCliente()
-      const cliente = this.findById(id);
-      const conta = this.findConta(id);
-  
-      cliente.contas.push(conta)
-      this.modificarCliente(listaClientes)
-    }
-  
     getIdGerente(id: string):string {
       const cliente = this.findById(id)
       const gerenteId = cliente.gerente.id
@@ -83,7 +76,5 @@ export class ClienteService extends UserService{
       return cliente
     }
 
-    
-  
   
 }

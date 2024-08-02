@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { GerenteService } from './gerente.service';
 
 @Controller('gerente')
@@ -18,6 +18,11 @@ export class GerenteController {
     @Get(':id')
     findById(@Param('id') id: string) {
       return this.gerenteService.findById(id);
+    }
+
+    @Patch(':clientes')
+    adicionaCliente(@Param('id') id:string){
+      return this.gerenteService.adicionarCliente(id)
     }
 
     @Delete()
