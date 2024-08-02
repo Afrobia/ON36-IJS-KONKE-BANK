@@ -18,7 +18,7 @@ export class ContasService {
 
   ) {
     const contas = this.lerConta();
-    const idCounter = contas.length > 0 ? contas[contas.length - 1].id + 1 : 1;
+    
   }
 
   private lerConta(): Contas[] {
@@ -32,10 +32,11 @@ export class ContasService {
 
   
 
-  criarConta(tipo: string, clienteId: string, saldo: number):Contas {
+  criarConta(tipo: string,clienteId: string, saldo: number):Contas {
     const contas = this.lerConta();
+    const idCounter = contas.length > 0 ? contas[contas.length - 1].id + 1 : 1;
     
-    const newConta = this.contasFactory.criarConta(tipo,this.idCounter, clienteId, saldo);
+    const newConta = this.contasFactory.criarConta(idCounter,tipo, clienteId, saldo);
     contas.push(newConta);
     this.modificarContas(contas);
 
@@ -55,6 +56,16 @@ export class ContasService {
   findAll() {
     return this.lerConta()
   }
+
+/*   public findByCliente(clienteId:string){
+    const contas = this.lerConta();
+    const conta = contas.find((contas) => contas.clienteId === clienteId);
+
+    if (!conta) {
+      throw new Error(`Conta ${clienteId} não encontrada`);
+    }
+    return conta;
+  } */
   
   removerConta(id: number): void {
     const contas = this.lerConta();

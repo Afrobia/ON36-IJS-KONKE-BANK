@@ -1,10 +1,10 @@
 import { Contas } from "./contas.interface";
 
 export class ContaPoupanca implements Contas{
-    id:number;
+    id: number;
     clienteId: string;
     saldo: number;
-    tipo: string;
+    tipo: string ;
     taxaRendimento: number
     
     constructor(id:number,tipo:string, clienteId: string,saldo: number){

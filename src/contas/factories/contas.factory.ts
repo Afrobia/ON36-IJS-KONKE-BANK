@@ -5,7 +5,7 @@ import { Contas } from '../model/contas.interface';
 
 
 export class ContasFactory {
-  criarConta( tipo: string,id:number, clienteId: string, saldo: number):Contas {
+  criarConta(id:number, tipo: string, clienteId: string, saldo: number):Contas {
     
     switch (tipo) {
       case "CORRENTE":

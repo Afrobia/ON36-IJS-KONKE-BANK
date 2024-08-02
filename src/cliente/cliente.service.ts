@@ -45,15 +45,15 @@ export class ClienteService extends UserService{
      return this.lerCliente();
     }
 
-    addConta(id:string) {
+   /*  addConta(id:string) {
       const cliente = this.findById(id)
       const contas = this.contaService.findAll();
       const conta = contas.find((conta) => conta.clienteId === id )
 
-      cliente.contas.push(conta)
+      cliente.contas.push()
 
 
-    }
+    } */
   
     findById(id: string) {
       const clientes = this.lerCliente();
