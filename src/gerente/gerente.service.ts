@@ -1,21 +1,18 @@
 import { Injectable } from "@nestjs/common";
-import { UserService } from "./user.service";
-import path from "path";
+import * as path from "path";
 import * as fs from 'fs';
-import { UserFactory } from "./factories/user.factory";
-import { UserGerente } from "./model/userGerente.model";
-import { ClienteService } from "./userCliente.service";
 import { ContasService } from "src/contas/contas.service";
+import { ClienteService } from "src/cliente/cliente.service";
+import { UserService } from "src/user/user.service";
+import { UserGerente } from "./userGerente.model";
 
 @Injectable()
 export class GerenteService extends UserService {
-  private readonly filePath = path.resolve('src/user/userGerentes.json');
+  private readonly filePath = path.resolve('src/.json/userGerente.json');
   private clienteService : ClienteService;
   private contasService: ContasService;
 
-  constructor(gerenteFactory: UserFactory) {
-    super(gerenteFactory);
-  }
+
 
   private lerGerente(): UserGerente[] {
     const data = fs.readFileSync(this.filePath, 'utf8');
@@ -61,10 +58,14 @@ export class GerenteService extends UserService {
   
 
   adicionarCliente(id:string){
+    const gerentes = this.lerGerente()
     const cliente = this.clienteService.findByGerente(id)
     const gerente = this.findById(id)
 
     gerente.listaIdCliente.push(cliente.id)
+    gerentes.push(gerente)
+
+    this.modificarGerente(gerentes)
     
   }
 

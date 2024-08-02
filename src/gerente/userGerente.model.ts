@@ -1,15 +1,22 @@
 import { randomUUID } from 'crypto';
-import { User } from './user.model';
+import { User } from 'src/user/model/user.model';
+
 
 export class UserGerente implements User {
-  tipo = TipoUser.GERENTE;
+
   nome: string;
   endereco: string;
   telefone: string;
   id: string;
-  listaIdCliente: string[] = []
+  
 
   constructor(nome:string, endereco: string, telefone: string) {
     this.id = randomUUID();
+    this.nome = nome;
+    this.endereco = endereco;
+    this.telefone = telefone 
   }
+  
+  listaIdCliente: string[] = [];
+  
 }

@@ -21,13 +21,13 @@ export class ContasController {
     return this.contaService.findById(+id);
   }
 
-   @Patch(':id/atualizar-saldo')
-  atualizarSaldo(@Param('id') id: number, @Body("saldo") newSaldo: number) {
-    return this.contaService.atualizarSaldo();
-  }
-
   @Delete(':id')
   removerConta(@Param('id') id: number) {
     return this.contaService.removerConta(+id);
-  } 
+  }
+   /* @Patch(':id/atualizar-saldo')
+  atualizarSaldo(@Param('id') id: number, @Body("saldo") newSaldo: number) {
+    return this.contaService.atualizarSaldo();
+  } */
+
 }
