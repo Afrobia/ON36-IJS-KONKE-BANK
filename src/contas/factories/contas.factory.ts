@@ -5,13 +5,13 @@ import { Contas } from '../model/contas.interface';
 
 
 export class ContasFactory {
-  criarConta( tipo: string, clienteId: string, saldo: number):Contas|ContaCorrente|ContaCorrente {
+  criarConta( tipo: string,id:number, clienteId: string, saldo: number):Contas {
     
     switch (tipo) {
       case "CORRENTE":
-        return new ContaCorrente(tipo,clienteId,saldo);
+        return new ContaCorrente(id,tipo,clienteId,saldo);
       case "POUPANCA":
-        return new ContaPoupanca(tipo,clienteId,saldo);
+        return new ContaPoupanca(id,tipo,clienteId,saldo);
     }
   }
 

@@ -5,6 +5,7 @@ import { ContasService } from 'src/contas/contas.service';
 import { UserService } from 'src/user/user.service';
 import { UserCliente } from './userCliente.model';
 
+
 @Injectable()
 export class ClienteService extends UserService{
     private readonly filePath = path.resolve('src/.json/userClientes.json');
@@ -20,9 +21,9 @@ export class ClienteService extends UserService{
       fs.writeFileSync(this.filePath, JSON.stringify(clientes, null, 2), 'utf8');
     }
   
-    criarCliente(nome: string, endereco: string, telefone: string): UserCliente {
+    criarCliente(nome: string, endereco: string, telefone: string, gerente: string): UserCliente {
       const listaClientes = this.lerCliente();
-      const newCliente = new UserCliente(nome, endereco, telefone);
+      const newCliente = new UserCliente(nome, endereco, telefone, gerente);
     
       listaClientes.push(newCliente);
       this.modificarCliente(listaClientes);
@@ -40,7 +41,18 @@ export class ClienteService extends UserService{
     
   
     findAll(): UserCliente[] {
-      return this.lerCliente();
+    
+     return this.lerCliente();
+    }
+
+    addConta(id:string) {
+      const cliente = this.findById(id)
+      const contas = this.contaService.findAll();
+      const conta = contas.find((conta) => conta.clienteId === id )
+
+      cliente.contas.push(conta)
+
+
     }
   
     findById(id: string) {
@@ -64,17 +76,16 @@ export class ClienteService extends UserService{
   
     getIdGerente(id: string):string {
       const cliente = this.findById(id)
-      const gerenteId = cliente.gerente.id
+      const gerenteId = cliente.gerente
   
       return gerenteId
     }
   
     findByGerente(gerenteId:string){
       const clientes = this.lerCliente()
-      const cliente = clientes.find((clientes) => clientes.gerente.id == gerenteId)
+      const cliente = clientes.find((clientes) => clientes.gerente == gerenteId)
   
       return cliente
     }
-
   
 }

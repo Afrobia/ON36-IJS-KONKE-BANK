@@ -10,14 +10,15 @@ export class UserCliente implements User {
   nome: string;
   endereco: string;
   telefone: string;
-  gerente: UserGerente
+  gerente: string
   contas: Contas[] = []
   
-  constructor(nome:string, endereco: string, telefone: string) {
+  constructor(nome:string, endereco: string, telefone: string, gerente:string) {
     this.id = randomUUID()
     this.nome = nome;
     this.endereco = endereco;
     this.telefone = telefone;
+    this.gerente = gerente
   }
 
 }

@@ -9,6 +9,7 @@ import { ClienteService } from 'src/cliente/cliente.service';
 @Injectable()
 export class ContasService {
   private readonly filePath = path.resolve('src/.json/contas.json');
+  private idCounter: number;
   
 
   constructor(
@@ -17,7 +18,7 @@ export class ContasService {
 
   ) {
     const contas = this.lerConta();
-    const id = contas.length > 0 ? contas[contas.length - 1].id + 1 : 1;
+    const idCounter = contas.length > 0 ? contas[contas.length - 1].id + 1 : 1;
   }
 
   private lerConta(): Contas[] {
@@ -29,14 +30,13 @@ export class ContasService {
     fs.writeFileSync(this.filePath, JSON.stringify(contas, null, 2), 'utf8');
   }
 
-  criarConta(tipo: string, clienteId: string, saldo: number) {
-    const contas = this.lerConta();
-    const cliente = this.clienteService.findById(clienteId)
+  
 
-    const newConta = this.contasFactory.criarConta(tipo, clienteId, saldo);
-    contas.push(newConta);
-    cliente.contas.push(newConta)
+  criarConta(tipo: string, clienteId: string, saldo: number):Contas {
+    const contas = this.lerConta();
     
+    const newConta = this.contasFactory.criarConta(tipo,this.idCounter, clienteId, saldo);
+    contas.push(newConta);
     this.modificarContas(contas);
 
     return newConta;
@@ -52,10 +52,10 @@ export class ContasService {
     return conta;
   }
 
-  findAll(): Contas[] {
-    return this.lerConta();
+  findAll() {
+    return this.lerConta()
   }
-
+  
   removerConta(id: number): void {
     const contas = this.lerConta();
     const contaIndex = contas.findIndex((contas) => contas.id === id);
