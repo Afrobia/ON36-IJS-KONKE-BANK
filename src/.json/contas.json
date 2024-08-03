@@ -10,5 +10,12 @@
     "tipo": "CORRENTE",
     "clienteId": "65f824c5-980b-4a83-921a-dfd26db2c41d",
     "saldo": 0
-  }
+  },
+  {
+    "id": 2,
+    "tipo": "CORRENTE",
+    "clienteId": "65f824c5-980b-4a83-921a-dfd26db2c41d",
+    "saldo": 300
+  },
+  null
 ]

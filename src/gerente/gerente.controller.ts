@@ -20,11 +20,6 @@ export class GerenteController {
       return this.gerenteService.findById(id);
     }
 
-    @Patch(':clientes')
-    adicionaCliente(@Param('id') id:string){
-      return this.gerenteService.adicionarCliente(id)
-    }
-
     @Delete()
     removergerente(@Param('id') id:string) {
         return this.gerenteService.removerGerente(id)

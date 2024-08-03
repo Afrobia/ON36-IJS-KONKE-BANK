@@ -4,14 +4,15 @@
     "id": "65f824c5-980b-4a83-921a-dfd26db2c41d",
     "nome": "Reinaldo Cardoso",
     "endereco": "Tao, tao, tao distante",
-    "telefone": " 85693256"
+    "telefone": " 85693256",
+    "gerente": "82a5288d-6964-4785-92a7-04233a5fc1c7"
   },
   {
     "contas": [],
     "id": "36d9aa97-e917-4457-af8b-00af48972dcc",
     "nome": "Risoflora",
     "telefone": "82325623",
-    "gerente": "Beatriz Santana"
+    "gerente": "82a5288d-6964-4785-92a7-04233a5fc1c7"
   },
   {
     "contas": [],

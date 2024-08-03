@@ -62,7 +62,7 @@ export class GerenteService extends UserService {
     const cliente = this.clienteService.findByGerente(id)
     const gerente = this.findById(id)
 
-    gerente.listaIdCliente.push(cliente.id)
+    gerente.listaIdCliente.push(cliente)
     gerentes.push(gerente)
     
     this.modificarGerente(gerentes)

@@ -19,6 +19,12 @@ export class ClienteController {
     findById(@Param('id') id: string) {
       return this.clienteService.findById(id);
     }
+    
+    @Patch(':id')
+    addConta(@Param('id') id: string, @Body('contas')contas:[]) {
+      return this.clienteService.addConta(id)
+    } //ajustar retorno
+    
 
     @Delete()
     removerCliente(@Param('id') id:string) {

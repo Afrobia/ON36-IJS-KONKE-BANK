@@ -1,8 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { ContasService } from './contas.service';
 import { Contas } from './model/contas.interface';
-import { ContaCorrente } from './model/contaCorrente';
-import { ContaPoupanca } from './model/contaPoupanca';
+
 
 @Controller('contas')
 export class ContasController {

@@ -30,30 +30,11 @@ export class ClienteService extends UserService{
   
       return newCliente;
     }
-
-    clienteTemConta(id:string) {
-      const cliente = this.findById(id)
-      if(cliente.contas.length == 0){
-        return "Cliente não tem conta ainda"
-      }
-      return cliente.contas
-    }
     
-  
     findAll(): UserCliente[] {
     
      return this.lerCliente();
     }
-
-   /*  addConta(id:string) {
-      const cliente = this.findById(id)
-      const contas = this.contaService.findAll();
-      const conta = contas.find((conta) => conta.clienteId === id )
-
-      cliente.contas.push()
-
-
-    } */
   
     findById(id: string) {
       const clientes = this.lerCliente();
@@ -73,6 +54,17 @@ export class ClienteService extends UserService{
       clientes.splice(clienteIndex, 1);
       this.modificarCliente(clientes);
     }
+    
+    addConta(id: string) {
+      const listaClientes = this.lerCliente()
+      const cliente = this.findById(id)
+      const conta = this.contaService.findConta(id)
+
+      cliente.contas.push(conta)
+      listaClientes.push(cliente)
+      this.modificarCliente(listaClientes)
+      
+    }
   
     getIdGerente(id: string):string {
       const cliente = this.findById(id)
@@ -80,12 +72,12 @@ export class ClienteService extends UserService{
   
       return gerenteId
     }
-  
+    
     findByGerente(gerenteId:string){
       const clientes = this.lerCliente()
       const cliente = clientes.find((clientes) => clientes.gerente == gerenteId)
   
-      return cliente
+      return cliente.id
     }
   
 }
