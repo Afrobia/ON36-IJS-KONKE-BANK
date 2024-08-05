@@ -1,97 +1,36 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { Contas } from './model/contas.interface';
-import * as path from 'path';
-import * as fs from 'fs';
+import { Injectable } from '@nestjs/common';
+import { TipoContas } from './model/contas.model';
 import { ContasFactory } from './factories/contas.factory';
-import { ClienteService } from 'src/cliente/cliente.service';
+import { ContasRepository } from './contas.repository';
+import { UserCliente } from 'src/cliente/userCliente.model';
 
 @Injectable()
 export class ContasService {
-  private readonly filePath = path.resolve('src/.json/contas.json');
 
   constructor(
-    private readonly clienteService: ClienteService,
+    private readonly contasRepository: ContasRepository,
     private readonly contasFactory: ContasFactory,
-  ) {
-    const contas = this.lerConta();
+  ) {}
+
+  
+  criarConta(tipo:TipoConta, cliente: UserCliente): TipoContas {
+    const conta = this.contasFactory.criarConta(tipo, cliente);
+
+    return this.contasRepository.criarConta(conta)
   }
 
-  private lerConta(): Contas[] {
-    const data = fs.readFileSync(this.filePath, 'utf8');
-    return JSON.parse(data) as Contas[];
+  modificarTipoDeConta(contaId: string, novoTipo: TipoConta): TipoContas{
+    const conta = this.contasRepository.findContaById(contaId);
+    const cliente = conta.cliente
+
+    this.removerConta(contaId);
+    
+    return this.criarConta(novoTipo,cliente)
   }
 
-  private modificarContas(contas: Contas[]): void {
-    fs.writeFileSync(this.filePath, JSON.stringify(contas, null, 2), 'utf8');
+  removerConta(contaId: string): void {
+    this.contasRepository.removerConta(contaId)
+
   }
 
-  criarConta(tipo: string, clienteId: string, saldo: number): Contas {
-    const contas = this.lerConta();
-    const idCounter = contas.length > 0 ? contas[contas.length - 1].id + 1 : 1;
-
-    const newConta = this.contasFactory.criarConta(
-      idCounter,
-      tipo,
-      clienteId,
-      saldo,
-    );
-
-    contas.push(newConta);
-    this.modificarContas(contas);
-
-    return newConta;
-  }
-
-  findById(id: number) {
-    const contas = this.lerConta();
-    const conta = contas.find((contas) => contas.id === id);
-
-    if (!conta) {
-      throw new Error(`Conta ${id} não encontrada`);
-    }
-    return conta;
-  }
-
-  findAll() {
-    return this.lerConta();
-  }
-
-  removerConta(id: number): void {
-    const contas = this.lerConta();
-    const contaIndex = contas.findIndex((contas) => contas.id === id);
-
-    contas.splice(contaIndex, 1);
-    this.modificarContas(contas);
-  }
-
-  findConta(clienteId: string) {
-    const contas = this.lerConta();
-    const conta = contas.find((contas) => contas.clienteId === clienteId);
-
-    if (!conta) {
-      throw new Error(`Conta ${clienteId} não encontrada`);
-    }
-
-    const newCont = {
-      id: conta.id,
-      tipo: conta.tipo,
-      saldo: conta.saldo,
-    };
-
-    return newCont;
-  }
-
-  calcularSaldoTotal(): number {
-    const listaDeContas = this.lerConta();
-
-    return listaDeContas.reduce((total, conta) => total + conta.saldo, 0);
-  }
-
-  /* doSaque(valor: number) {
-   this.saque.sacar(valor,this.saldo, this.atualizarSaldo);
-  }
-
-  doDeposito(valor: number) {
-    this.deposito.depositar(valor, this.saldo, this.atualizarSaldo);
-  } */
 }

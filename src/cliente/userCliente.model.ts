@@ -1,5 +1,5 @@
 import { randomUUID } from 'crypto';
-import { Contas } from 'src/contas/model/contas.interface';
+import { Contas } from 'src/contas/model/contas.model';
 import { UserGerente } from 'src/gerente/userGerente.model';
 import { User } from 'src/user/model/user.interface';
 

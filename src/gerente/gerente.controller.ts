@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/commo
 import { GerenteService } from './gerente.service';
 import { UserGerente } from './userGerente.model';
 import { UserCliente } from 'src/cliente/userCliente.model';
+import { TipoContas } from 'src/contas/model/contas.model';
 
 @Controller('gerente')
 export class GerenteController {
@@ -56,7 +57,7 @@ export class GerenteController {
     @Param('GerenteId') gerenteId: string,
     @Param('clienteId') clienteId: string,
     @Body('tipo') tipo: TipoConta,
-  ): TAccount {
+  ): TipoContas {
     return this.gerenteService.abrirConta(gerenteId, clienteId, tipo);
   }
 
@@ -70,8 +71,8 @@ export class GerenteController {
   modificarTipoDeConta(
     @Param('gerenteId') gerenteId: string,
     @Param('contaId') contaId: number,
-    @Body('novoTipo') novoTipo: tipoConta,
-  ): TAccount {
+    @Body('novoTipo') novoTipo: TipoConta,
+  ): TipoContas {
     return this.gerenteService.modificarTipoDeConta(gerenteId, contaId, novoTipo);
   }
     

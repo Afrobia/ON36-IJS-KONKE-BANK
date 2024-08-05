@@ -1,19 +1,34 @@
 
+import { UserCliente } from 'src/cliente/userCliente.model';
 import { ContaCorrente } from '../model/contaCorrente';
 import { ContaPoupanca } from '../model/contaPoupanca';
-import { Contas } from '../model/contas.interface';
 
 
 export class ContasFactory {
-  criarConta(id:number, tipo: string, clienteId: string, saldo: number):Contas {
+  criarConta(tipo: TipoConta, cliente:UserCliente):ContaCorrente|ContaPoupanca {
     
     switch (tipo) {
-      case "CORRENTE":
-        return new ContaCorrente(id,tipo,clienteId,saldo);
-      case "POUPANCA":
-        return new ContaPoupanca(id,tipo,clienteId,saldo);
-    }
-  }
+      case TipoConta.CORRENTE:
+        const contaCorrente = new ContaCorrente();
+        contaCorrente.cliente = cliente;
+        contaCorrente.chequeEspecial = 150;
+        contaCorrente.tipoContas = TipoConta.CORRENTE;
+        contaCorrente.saldo = 0;
+      
+        return contaCorrente;
 
-  
+      case TipoConta.POUPANCA:
+        const contaPoupanca =  new ContaPoupanca();
+        contaPoupanca.cliente = cliente;
+        contaPoupanca.taxaRendimento = 0.025;
+        contaPoupanca.tipoContas = TipoConta.POUPANCA
+        contaPoupanca.saldo = 10
+
+        return contaPoupanca;
+
+      default:
+        throw new Error('Falha no tipo de conta, verifique se é um tipo valido');
+
+    }
+  } 
 }

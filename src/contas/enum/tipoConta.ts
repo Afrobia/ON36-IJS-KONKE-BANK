@@ -1,6 +1,6 @@
 
 enum TipoConta {
-    CORRENTE = 'CORRENTE',
-    POUPANCA = 'POUPANCA'
+    CORRENTE = 'corrente',
+    POUPANCA = 'poupanca'
 }
 

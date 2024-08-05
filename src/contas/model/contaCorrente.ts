@@ -1,22 +1,22 @@
-import { Contas } from "./contas.interface";
+import { Contas } from "./contas.model";
 
 
-export class ContaCorrente implements Contas{
+export class ContaCorrente extends Contas{
 
-    id:number
-    clienteId: string;
-    saldo: number;
-    tipo: string
-    saldoChequeEspecial: number;
+  chequeEspecial: number;
 
-    constructor(id:number,tipo:string,
-    clienteId: string,
-    saldo: number){
-        this.id = id
-        this.tipo = tipo
-        this.clienteId = clienteId;
-        this.saldo = saldo
-    } 
-    
+  getSaldo(): number {
+    return this.saldo + this.chequeEspecial;
+  }
+
+  transferencia(destiny: Contas, valor: number): void {
+    if (valor <= this.getSaldo()) {
+      this.saque(valor);
+      destiny.deposito(valor);
+      return;
+    }
+
+    throw new Error('Saldo insuficiente para transferência.');
+  }
     
 }

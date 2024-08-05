@@ -12,7 +12,7 @@ export class GerenteRepository {
     return this.gerentes;
   }
 
-  createGerente(gerente: UserGerente): UserGerente {
+  criarGerente(gerente: UserGerente): UserGerente {
     gerente.id = randomUUID();
     this.gerentes.push(gerente);
     return gerente;
@@ -23,7 +23,7 @@ export class GerenteRepository {
     return gerente;
   }
 
-  removeGerente(gerenteId: string): void {
+  removerGerente(gerenteId: string): void {
     this.gerentes = this.gerentes.filter((gerente) => gerente.id !== gerenteId);
   }
 }

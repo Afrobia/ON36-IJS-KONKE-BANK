@@ -4,6 +4,7 @@ import { ClienteService } from "src/cliente/cliente.service";
 import { UserGerente } from "./userGerente.model";
 import { GerenteRepository } from "./gerente.repository";
 import { UserCliente } from "src/cliente/userCliente.model";
+import { TipoContas } from "src/contas/model/contas.model";
 
 @Injectable()
 export class GerenteService {
@@ -15,7 +16,7 @@ export class GerenteService {
 
   
   criarGerente(gerente: UserGerente): UserGerente {
-    return this.gerenteRepository.createGerente(gerente)
+    return this.gerenteRepository.criarGerente(gerente)
   }
 
   findAllGerentes(): UserGerente[] {
@@ -33,7 +34,7 @@ export class GerenteService {
   }
 
   removerGerente(gerenteId: string): void {
-    this.gerenteRepository.removeGerente(gerenteId)
+    this.gerenteRepository.removerGerente(gerenteId)
 
   }
 
@@ -49,7 +50,7 @@ export class GerenteService {
     
   }
 
-  clienteTemGerente(contaId:number, gerenteId: string): boolean {
+  clienteTemGerente(contaId:string, gerenteId: string): boolean {
     const cliente = this.clienteService.findClienteByContaId(accountId);
     const gerente = this.findById(gerenteId);
 
@@ -66,7 +67,7 @@ export class GerenteService {
 
   }
 
-  abrirConta(gerenteId:string, clienteId:string, tipo: TipoConta) {
+  abrirConta(gerenteId:string, clienteId:string, tipo: TipoConta):TipoContas {
     const cliente = this.clienteService.findById(clienteId)
     const gerente = this.gerenteRepository.findGerenteById(gerenteId)
 
@@ -76,21 +77,21 @@ export class GerenteService {
 
   }
 
-  fecharConta(gerenteId: string, contaId:number): void {
-    if(!this.clienteTemGerente(contaId,gerenteId)) {
+  fecharConta(gerenteId: string, contaId:string): void {
+    if(!this.clienteTemGerente(contaId, gerenteId)) {
       throw new Error ('Cliente não vinculado ao gerente')
     }
 
     this.contasService.removerConta(contaId)
   }
 
-  modificarTipoDeConta(gerenteId:string, contaId:number, tipo: TipoConta) {
+  modificarTipoDeConta(gerenteId:string, contaId:string, novoTipo: TipoConta):TipoContas{
 
     if(!this.clienteTemGerente(contaId, gerenteId)) {
       throw new Error ('Cliente não vinculado ao gerente')
     }
 
-    return this.contasService.mudarTipoDeConta(contaId, tipo)
+    return this.contasService.modificarTipoDeConta(contaId, novoTipo)
   }
 
 
