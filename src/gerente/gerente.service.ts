@@ -6,6 +6,8 @@ import { GerenteRepository } from "./gerente.repository";
 import { UserCliente } from "src/cliente/userCliente.model";
 import { TipoContas } from "src/contas/model/contas.model";
 
+
+
 @Injectable()
 export class GerenteService {
   
@@ -51,7 +53,7 @@ export class GerenteService {
   }
 
   clienteTemGerente(contaId:string, gerenteId: string): boolean {
-    const cliente = this.clienteService.findClienteByContaId(contaId);
+    const cliente = this.clienteService.findClienteByConta(contaId);
     const gerente = this.findById(gerenteId);
 
     if(cliente.gerente.id !== gerente.id) {
@@ -62,13 +64,13 @@ export class GerenteService {
   }
 
   removerCliente(gerenteId:string, clienteId: string): void {
-    const cliente = this.clienteService.findClienteIdeGerenteId(clienteId, gerenteId)
+    const cliente = this.clienteService.findClientebyIdeGerenteId(clienteId, gerenteId)
     this.clienteService.removerCliente(cliente.id)
 
   }
 
   abrirConta(gerenteId:string, clienteId:string, tipo: TipoConta):TipoContas {
-    const cliente = this.clienteService.findById(clienteId)
+    const cliente = this.clienteService.findClienteById(clienteId)
     const gerente = this.gerenteRepository.findGerenteById(gerenteId)
 
     cliente.gerente = gerente;

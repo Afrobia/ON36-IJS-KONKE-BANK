@@ -1,13 +1,20 @@
 import { Injectable } from "@nestjs/common";
 import { randomUUID } from "crypto";
 import { UserCliente } from "./userCliente.model";
+import { User } from "src/user/model/user.interface";
 
 
 @Injectable()
-export class ClientRepository {
+export class ClienteRepository {
   private clientes: UserCliente[] = [];
 
   constructor() {}
+
+  criarCliente(cliente: UserCliente): UserCliente {
+    cliente.id = randomUUID();
+    this.clientes.push(cliente);
+    return cliente;
+  }
 
   findAllClientes(): UserCliente[] {
     return this.clientes;
@@ -19,7 +26,7 @@ export class ClientRepository {
 
   }
 
-  findClienteIdeGerenteId(clienteId: string, gerenteId: string): UserCliente | null {
+  findClienteByIdEGerenteId(clienteId: string, gerenteId: string): UserCliente | null {
     const cliente = this.clientes.find(
       (cliente) => cliente.id === clienteId && cliente.gerente.id === gerenteId,
     );
@@ -35,19 +42,13 @@ export class ClientRepository {
     return cliente;
   }
 
-  getClientById(clienteId: string): UserCliente | null {
+  getClienteById(clienteId: string): UserCliente | null {
     const cliente = this.clientes.find((cliente) => cliente.id === clienteId);
 
     return cliente;
   }
 
-  criarCliente(cliente: UserCliente): UserCliente {
-    cliente.id = randomUUID();
-    this.clientes.push(cliente);
-    return cliente;
-  }
-
-  removerClient(clienteId: string): void {
+  removerCliente(clienteId: string): void {
     this.clientes = this.clientes.filter((cliente) => cliente.id !== clienteId);
   }
 }
