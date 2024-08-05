@@ -14,7 +14,6 @@ export class UserCliente implements User {
   contas?: Contas[];
   
   constructor(nome:string, endereco: string, telefone: string) {
-    this.id = randomUUID()
     this.nome = nome;
     this.endereco = endereco;
     this.telefone = telefone;

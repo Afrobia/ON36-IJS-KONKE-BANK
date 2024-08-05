@@ -51,7 +51,7 @@ export class GerenteService {
   }
 
   clienteTemGerente(contaId:string, gerenteId: string): boolean {
-    const cliente = this.clienteService.findClienteByContaId(accountId);
+    const cliente = this.clienteService.findClienteByContaId(contaId);
     const gerente = this.findById(gerenteId);
 
     if(cliente.gerente.id !== gerente.id) {
