@@ -1,6 +1,7 @@
 import { randomUUID } from 'crypto';
 import { Contas } from 'src/contas/model/contas.interface';
-import { User } from 'src/user/model/user.model';
+import { UserGerente } from 'src/gerente/userGerente.model';
+import { User } from 'src/user/model/user.interface';
 
 
 export class UserCliente implements User {
@@ -9,15 +10,16 @@ export class UserCliente implements User {
   nome: string;
   endereco: string;
   telefone: string;
-  gerente: string;
-  contas: Object[];
+  gerente?: UserGerente;
+  contas?: Contas[];
   
-  constructor(nome:string, endereco: string, telefone: string, gerente:string) {
+  constructor(nome:string, endereco: string, telefone: string) {
     this.id = randomUUID()
     this.nome = nome;
     this.endereco = endereco;
     this.telefone = telefone;
-    this.gerente = gerente
+    this.contas = []
+    this.gerente = null
   }
 
 }

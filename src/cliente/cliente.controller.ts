@@ -25,7 +25,6 @@ export class ClienteController {
       return this.clienteService.addConta(id)
     } //ajustar retorno
     
-
     @Delete()
     removerCliente(@Param('id') id:string) {
         return this.clienteService.removerCliente(id)

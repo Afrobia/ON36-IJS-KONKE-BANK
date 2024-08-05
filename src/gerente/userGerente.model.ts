@@ -1,20 +1,17 @@
-import { randomUUID } from 'crypto';
-import { User } from 'src/user/model/user.model';
+import { UserCliente } from 'src/cliente/userCliente.model';
+import { User } from 'src/user/model/user.interface';
 
 
-export class UserGerente implements User {
-
-  nome: string;
-  endereco: string;
-  telefone: string;
+export class UserGerente implements User{
   id: string;
+  nome: string;
+  clientes: UserCliente[]
+  
   
 
-  constructor(nome:string, endereco: string, telefone: string) {
-    this.id = randomUUID();
+  constructor(nome:string) {
     this.nome = nome;
-    this.endereco = endereco;
-    this.telefone = telefone 
+    this.clientes = []
   }
   
   listaIdCliente: string[] = [];
