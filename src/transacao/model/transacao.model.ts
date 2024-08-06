@@ -1,5 +1,3 @@
-import { Contas } from "src/contas/model/contas.model";
-
 export interface Transacao {
   id: string;
   contaId: string;
@@ -8,13 +6,7 @@ export interface Transacao {
   data: Date
 }
 
-/* export class Transacao {
-   
-  constructor(contaId:string, valor: number) {
-    this.contaId = contaId
-    this.valor = valor 
-  }
+export class Transacao {
+  
 }
- */
-
 
