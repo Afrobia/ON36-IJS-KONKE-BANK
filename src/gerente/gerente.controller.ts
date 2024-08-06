@@ -3,6 +3,7 @@ import { GerenteService } from './gerente.service';
 import { UserGerente } from './userGerente.model';
 import { UserCliente } from 'src/cliente/userCliente.model';
 import { TipoContas } from 'src/contas/model/contas.model';
+import { TipoConta } from 'src/contas/enum/tipoConta';
 
 @Controller('gerente')
 export class GerenteController {
@@ -62,7 +63,7 @@ export class GerenteController {
   }
 
   @Delete(':gerenteId/contas/:contaId')
-  fecharConta(@Param('gerenteId') gerenteId: string, @Param('contaId') contaId: number,
+  fecharConta(@Param('gerenteId') gerenteId: string, @Param('contaId') contaId: string,
   ): void {
     return this.gerenteService.fecharConta(gerenteId, contaId);
   }
@@ -70,7 +71,7 @@ export class GerenteController {
   @Post(':gerenteId/contas/:contaId/mudar-tipo')
   modificarTipoDeConta(
     @Param('gerenteId') gerenteId: string,
-    @Param('contaId') contaId: number,
+    @Param('contaId') contaId: string,
     @Body('novoTipo') novoTipo: TipoConta,
   ): TipoContas {
     return this.gerenteService.modificarTipoDeConta(gerenteId, contaId, novoTipo);

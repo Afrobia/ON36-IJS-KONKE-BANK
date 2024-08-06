@@ -6,7 +6,7 @@ export interface Transacao {
   data: Date
 }
 
-export class Transacao {
-  
+export class Transacao implements Transacao {
+  constructor(){}
 }
 

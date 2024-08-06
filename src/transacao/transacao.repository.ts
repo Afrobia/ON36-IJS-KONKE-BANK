@@ -2,6 +2,7 @@ import { randomUUID } from 'crypto';
 import { Transacao } from './model/transacao.model';
 
 export class TransacaoRepository {
+  criarTransacao() {}
   /* transacoes: Transacao[] = [];
 
   criarTransacao(transacao: Transacao) {

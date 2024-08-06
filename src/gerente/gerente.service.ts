@@ -5,6 +5,7 @@ import { UserGerente } from "./userGerente.model";
 import { GerenteRepository } from "./gerente.repository";
 import { UserCliente } from "src/cliente/userCliente.model";
 import { TipoContas } from "src/contas/model/contas.model";
+import { TipoConta } from "src/contas/enum/tipoConta";
 
 
 

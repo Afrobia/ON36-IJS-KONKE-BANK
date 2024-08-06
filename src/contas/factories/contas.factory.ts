@@ -5,7 +5,7 @@ import { ContaPoupanca } from '../model/contaPoupanca';
 import { TipoConta } from '../enum/tipoConta';
 
 
-export class ContasFactory {
+/* export class ContasFactory {
   criarConta(tipo: TipoConta, cliente:UserCliente):ContaCorrente|ContaPoupanca {
     
     switch (tipo) {
@@ -32,4 +32,4 @@ export class ContasFactory {
 
     }
   } 
-}
+} */
