@@ -10,10 +10,11 @@ import { UserFactory } from './user/factories/user.factory';
 import { ContasFactory } from './contas/factories/contas.factory';
 import { GerenteModule } from './gerente/gerente.module';
 import { ClienteModule } from './cliente/cliente.module';
+import { TransacaoModule } from './transacao/transacao.module';
 
 
 @Module({
-  imports: [UserModule, ContasModule, GerenteModule, ClienteModule],
+  imports: [UserModule, ContasModule, GerenteModule, ClienteModule, TransacaoModule],
   controllers: [AppController, GerenteController],
   providers: [AppService, ClienteService, GerenteService,UserFactory,ContasFactory],
 })

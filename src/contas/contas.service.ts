@@ -1,8 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { TipoContas } from './model/contas.model';
 import { ContasFactory } from './factories/contas.factory';
 import { ContasRepository } from './contas.repository';
 import { UserCliente } from 'src/cliente/userCliente.model';
+import { Contas, TipoContas } from './model/contas.model';
+import { TipoConta } from './enum/tipoConta';
+
 
 @Injectable()
 export class ContasService {
@@ -19,6 +21,7 @@ export class ContasService {
     return this.contasRepository.criarConta(conta)
   }
 
+  // Adapter
   modificarTipoDeConta(contaId: string, novoTipo: TipoConta): TipoContas{
     const conta = this.contasRepository.findContaById(contaId);
     const cliente = conta.cliente
@@ -31,6 +34,21 @@ export class ContasService {
   removerConta(contaId: string): void {
     this.contasRepository.removerConta(contaId)
 
+  }
+
+  realizarTransacao(valor: number, contaId: string , tipoTransacao: TipoTransacao, destino: Contas) {
+    const conta = this.contasRepository.findContaById(contaId)
+
+    switch(tipoTransacao) {
+      case TipoTransacao.SAQUE:
+        conta.saque(valor)
+      case TipoTransacao.DEPOSITO:
+        conta.deposito(valor)
+      case TipoTransacao.TRANSFERENCIA:
+        conta.transferencia(destino, valor)
+      default:
+        throw new Error('Falha na transação')
+    }
   }
 
 }

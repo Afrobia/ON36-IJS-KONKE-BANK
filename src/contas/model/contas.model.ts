@@ -1,10 +1,11 @@
 import { UserCliente } from "src/cliente/userCliente.model";
 import { ContaCorrente } from "./contaCorrente";
 import { ContaPoupanca } from "./contaPoupanca";
+import { TipoConta } from "../enum/tipoConta";
 
 export abstract class Contas {
   id: string;
-  tipoContas: TipoConta.CORRENTE | TipoConta.POUPANCA;
+  tipoConta: TipoConta.CORRENTE | TipoConta.POUPANCA;
   saldo: number;
   cliente: UserCliente;
 
@@ -12,20 +13,23 @@ export abstract class Contas {
     return this.saldo;
   }
 
-  saque(valor: number): void {
+  saque(valor: number): number {
     if (valor <= this.saldo) {
-      this.saldo -= valor;
-      return;
+      const newSaldo = this.saldo - valor;
+      
+      return newSaldo ;
     }
 
     throw new Error('Saldo insuficiente');
   }
 
-  deposito(valor: number): void {
-    this.saldo += valor;
+  deposito(valor: number): number {
+    const newSaldo = this.saldo + valor;
+
+    return newSaldo
   }
 
-  abstract transferencia(destino: Contas, valor: number): void;
+  abstract transferencia(destino: Contas, valor: number): number;
 
 }
 
