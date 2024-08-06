@@ -1,25 +1,32 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { ClienteService } from './cliente.service';
-
-
 
 @Controller('cliente')
 export class ClienteController {
-  constructor(private readonly clienteService: ClienteService) {}
+    constructor(private clienteService: ClienteService) {};
 
+    @Post()
+    criarCliente(@Body('nome') nome:string, @Body('telefone') telefone: string, @Body('endereco') endereco: string,@Body('gerente') gerente:string) {
+      return this.clienteService.criarCliente(nome, endereco, telefone, gerente);
+    }
   
-  @Patch('id/conta')
-  adicionarConta(@Param('id')id:string, @Param('conta')conta: ContaBancaria) {
-    return this.clienteService.adicionarConta(id,conta)
-  }
+    @Get()
+    findAll() {
+      return this.clienteService.findAll();
+    }
   
-  @Patch('id/conta')
-  cancelarConta(@Param('id')id:string, @Param('conta')conta: ContaBancaria, @Param('contaId')contaId: number) {
-    return this.clienteService.cancelarConta(id,conta,contaId)
-  }
-
-  @Delete(':id')
-  removerCliente(@Param('id') id: string) {
-    return this.clienteService.removerCliente(id);
-  }  
+    @Get(':id')
+    findById(@Param('id') id: string) {
+      return this.clienteService.findById(id);
+    }
+    
+    @Patch(':id')
+    addConta(@Param('id') id: string, @Body('contas')contas:[]) {
+      return this.clienteService.addConta(id)
+    } //ajustar retorno
+    
+    @Delete()
+    removerCliente(@Param('id') id:string) {
+        return this.clienteService.removerCliente(id)
+    }
 }

@@ -1,56 +1,98 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import * as path from 'path';
-import * as fs from 'fs';
-import { Gerente } from './gerente.model';
-import { Cliente } from 'src/cliente/cliente.model';
-import { ClienteService } from 'src/cliente/cliente.service';
-
+import { Injectable, NotFoundException } from "@nestjs/common";
+import { ContasService } from "src/contas/contas.service";
+import { ClienteService } from "src/cliente/cliente.service";
+import { UserGerente } from "./userGerente.model";
+import { GerenteRepository } from "./gerente.repository";
+import { UserCliente } from "src/cliente/userCliente.model";
+import { TipoContas } from "src/contas/model/contas.model";
 
 @Injectable()
 export class GerenteService {
-  private readonly filePath = path.resolve('src/gerente/gerentes.json');
+  
+  constructor(
+    private gerenteRepository: GerenteRepository, 
+    private clienteService : ClienteService,
+    private contasService: ContasService) {}
 
-  constructor(private readonly clienteService: ClienteService){}
-
-  private lerGerente(): Gerente[] {
-    const data = fs.readFileSync(this.filePath, 'utf8');
-    return JSON.parse(data) as Gerente[];
+  
+  criarGerente(gerente: UserGerente): UserGerente {
+    return this.gerenteRepository.criarGerente(gerente)
   }
 
-  private modificarGerente(gerentes: Gerente[]): void {
-    fs.writeFileSync(this.filePath, JSON.stringify(gerentes, null, 2), 'utf8');
+  findAllGerentes(): UserGerente[] {
+    return this.gerenteRepository.getAllGerentes()
   }
 
-  criarGerente(id: string, nome: string, listaClientes: Cliente[]): Gerente {
-    const gerentes = this.lerGerente();
-    const newGerente = {
-      id,
-      nome,
-      listaClientes: [],
-    };
-    gerentes.push(newGerente);
-    this.modificarGerente(gerentes);
-    return newGerente;
-  }
+  findById(gerenteId: string) {
+    const gerente = this.gerenteRepository.findGerenteById(gerenteId)
 
-  findGerente(gerenteId: string) {
-    const gerentes = this.lerGerente();
-    const gerente = gerentes.find((gerentes) => gerentes.id === gerenteId);
-
-    if (!gerente) {
-      throw new Error(`Cliente ${gerenteId} não encontrada`);
+    if(!gerente) {
+      throw new NotFoundException({gerente: 'Gerente não encontrado'})
     }
-    
-    return gerente;
+
+    return gerente
+  }
+
+  removerGerente(gerenteId: string): void {
+    this.gerenteRepository.removerGerente(gerenteId)
+
+  }
+
+  findClienteByGerenteId(gerenteId: string): UserCliente[] {
+    return this.clienteService.findClienteByGerenteId(gerenteId)
   }
   
-  adicionarListaClientes(id:string,gerenteId:string) {
-    const gerentes = this.lerGerente();
-    const gerente = this.findGerente(gerenteId)
-    const cliente = this.clienteService.findById(id);
+
+  adicionarCliente(gerenteId:string, cliente: UserCliente): UserCliente {
+    const gerente = this.gerenteRepository.findGerenteById(gerenteId);
+    cliente.gerente = gerente;
+    return this.clienteService.criarCliente(cliente)
     
-    gerente.listaClientes.push(cliente)
-    this.modificarGerente(gerentes)
   }
- 
+
+  clienteTemGerente(contaId:string, gerenteId: string): boolean {
+    const cliente = this.clienteService.findClienteByContaId(contaId);
+    const gerente = this.findById(gerenteId);
+
+    if(cliente.gerente.id !== gerente.id) {
+      throw new Error ('Cliente não está vinculado ao gerente')
+    }
+
+    return true
+  }
+
+  removerCliente(gerenteId:string, clienteId: string): void {
+    const cliente = this.clienteService.findClienteIdeGerenteId(clienteId, gerenteId)
+    this.clienteService.removerCliente(cliente.id)
+
+  }
+
+  abrirConta(gerenteId:string, clienteId:string, tipo: TipoConta):TipoContas {
+    const cliente = this.clienteService.findById(clienteId)
+    const gerente = this.gerenteRepository.findGerenteById(gerenteId)
+
+    cliente.gerente = gerente;
+
+    return this.contasService.criarConta(tipo, cliente)
+
+  }
+
+  fecharConta(gerenteId: string, contaId:string): void {
+    if(!this.clienteTemGerente(contaId, gerenteId)) {
+      throw new Error ('Cliente não vinculado ao gerente')
+    }
+
+    this.contasService.removerConta(contaId)
+  }
+
+  modificarTipoDeConta(gerenteId:string, contaId:string, novoTipo: TipoConta):TipoContas{
+
+    if(!this.clienteTemGerente(contaId, gerenteId)) {
+      throw new Error ('Cliente não vinculado ao gerente')
+    }
+
+    return this.contasService.modificarTipoDeConta(contaId, novoTipo)
+  }
+
+
 }
