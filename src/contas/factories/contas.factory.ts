@@ -6,6 +6,7 @@ import { TipoConta } from '../enum/tipoConta';
 
 
 export class ContasFactory {
+  criarConta(){} 
   /* criarConta(tipo: TipoConta, cliente:UserCliente):ContaCorrente|ContaPoupanca {
     
     switch (tipo) {
