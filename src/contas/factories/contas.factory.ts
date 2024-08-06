@@ -6,8 +6,7 @@ import { TipoConta } from '../enum/tipoConta';
 
 
 export class ContasFactory {
-  criarConta(){} 
-  /* criarConta(tipo: TipoConta, cliente:UserCliente):ContaCorrente|ContaPoupanca {
+  criarConta(tipo: TipoConta, cliente:UserCliente):ContaCorrente|ContaPoupanca {
     
     switch (tipo) {
       case TipoConta.CORRENTE:
@@ -32,5 +31,5 @@ export class ContasFactory {
         throw new Error('Falha no tipo de conta, verifique se é um tipo valido');
 
     }
-  }  */
+  } 
 }
