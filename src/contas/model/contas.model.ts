@@ -13,23 +13,23 @@ export abstract class Contas {
     return this.saldo;
   }
 
-  saque(valor: number): number {
+  saque(valor: number): void {
     if (valor <= this.saldo) {
-      const newSaldo = this.saldo - valor;
+      this.saldo - valor;
       
-      return newSaldo ;
+      return;
     }
 
     throw new Error('Saldo insuficiente');
   }
 
-  deposito(valor: number): number {
-    const newSaldo = this.saldo + valor;
+  deposito(valor: number): void {
+    this.saldo + valor;
 
-    return newSaldo
+    return
   }
 
-  abstract transferencia(destino: Contas, valor: number): number;
+  abstract transferencia(destino: Contas, valor: number): void;
 
 }
 

@@ -1,7 +1,7 @@
 import * as supertest from 'supertest';
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
-import { AppModule } from 'src/app.module';
+import { AppModule } from '../../app.module';
 import { ClienteService } from '../cliente.service';
 import { ClienteRepository } from '../cliente.repository';
 

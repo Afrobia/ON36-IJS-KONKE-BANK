@@ -4,7 +4,7 @@ import { Contas } from "./contas.model";
 export class ContaPoupanca extends Contas{
     taxaRendimento: number;
 
-    transferencia(destino: Contas, valor: number): number {
+    transferencia(destino: Contas, valor: number): void {
       if (valor <= this.saldo) {
         this.saque(valor);
         destino.deposito(valor);

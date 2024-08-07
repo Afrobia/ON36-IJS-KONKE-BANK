@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { ContasFactory } from './factories/contas.factory';
 import { ContasRepository } from './contas.repository';
 import { UserCliente } from 'src/cliente/userCliente.model';
-import { TipoContas } from './model/contas.model';
+import { Contas, TipoContas } from './model/contas.model';
 import { TipoConta } from './enum/tipoConta';
 
 
@@ -36,7 +36,7 @@ export class ContasService {
 
   }
 
-  /* realizarTransacao(valor: number, contaId: string , tipoTransacao: TipoTransacao, destino: Contas) {
+  realizarTransacao(valor: number, contaId: string , tipoTransacao: TipoTransacao, destino: Contas) {
     const conta = this.contasRepository.findContaById(contaId)
 
     switch(tipoTransacao) {
@@ -47,8 +47,8 @@ export class ContasService {
       case TipoTransacao.TRANSFERENCIA:
         conta.transferencia(destino, valor)
       default:
-        throw new Error('Falha na transação')
+        throw new Error('Tipo de transacao Invalida')
     }
-  } */
+  } 
 
 }
