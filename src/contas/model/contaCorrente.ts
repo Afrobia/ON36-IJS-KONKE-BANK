@@ -9,7 +9,7 @@ export class ContaCorrente extends Contas{
     return this.saldo + this.chequeEspecial;
   }
 
-  transferencia(destiny: Contas, valor: number): void {
+  transferencia(destiny: Contas, valor: number): number {
     if (valor <= this.getSaldo()) {
       this.saque(valor);
       destiny.deposito(valor);

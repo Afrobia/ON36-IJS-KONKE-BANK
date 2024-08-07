@@ -10,11 +10,14 @@ import { UserFactory } from './user/factories/user.factory';
 import { ContasFactory } from './contas/factories/contas.factory';
 import { GerenteModule } from './gerente/gerente.module';
 import { ClienteModule } from './cliente/cliente.module';
+import { ContasService } from './contas/contas.service';
+import { ContasController } from './contas/contas.controller';
+import { ClienteController } from './cliente/cliente.controller';
 
 
 @Module({
-  imports: [UserModule, ContasModule, GerenteModule, ClienteModule],
-  controllers: [AppController, GerenteController],
-  providers: [AppService, ClienteService, GerenteService,UserFactory,ContasFactory],
+  imports: [AppModule,UserModule, ContasModule, GerenteModule, ClienteModule],
+  controllers: [AppController, GerenteController, ContasController, ClienteController],
+  providers: [AppService, ClienteService, GerenteService,UserFactory,ContasFactory, ContasService],
 })
 export class AppModule {}

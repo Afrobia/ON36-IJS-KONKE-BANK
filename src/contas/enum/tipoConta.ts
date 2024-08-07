@@ -1,5 +1,5 @@
 
-enum TipoConta {
+export enum TipoConta {
     CORRENTE = 'corrente',
     POUPANCA = 'poupanca'
 }

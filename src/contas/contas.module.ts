@@ -6,6 +6,7 @@ import { ClienteModule } from 'src/cliente/cliente.module';
 import { ContasRepository } from './contas.repository';
 
 
+
 @Module({
   imports:[ClienteModule],
   providers: [ContasService, ContasRepository,ContasFactory],

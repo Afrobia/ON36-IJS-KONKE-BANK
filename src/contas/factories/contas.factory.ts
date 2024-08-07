@@ -2,6 +2,7 @@
 import { UserCliente } from 'src/cliente/userCliente.model';
 import { ContaCorrente } from '../model/contaCorrente';
 import { ContaPoupanca } from '../model/contaPoupanca';
+import { TipoConta } from '../enum/tipoConta';
 
 
 export class ContasFactory {
@@ -12,7 +13,7 @@ export class ContasFactory {
         const contaCorrente = new ContaCorrente();
         contaCorrente.cliente = cliente;
         contaCorrente.chequeEspecial = 150;
-        contaCorrente.tipoContas = TipoConta.CORRENTE;
+        contaCorrente.tipoConta = TipoConta.CORRENTE;
         contaCorrente.saldo = 0;
       
         return contaCorrente;
@@ -21,7 +22,7 @@ export class ContasFactory {
         const contaPoupanca =  new ContaPoupanca();
         contaPoupanca.cliente = cliente;
         contaPoupanca.taxaRendimento = 0.025;
-        contaPoupanca.tipoContas = TipoConta.POUPANCA
+        contaPoupanca.tipoConta = TipoConta.POUPANCA
         contaPoupanca.saldo = 10
 
         return contaPoupanca;

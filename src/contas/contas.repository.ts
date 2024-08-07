@@ -2,6 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { randomUUID } from "crypto";
 import { TipoContas } from "./model/contas.model";
 
+
 @Injectable()
 export class ContasRepository {
   contas: TipoContas[] = [];
