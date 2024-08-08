@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { ContasService } from '../service/contas.service';
 import { TipoContas } from '../model/contas.model';
 import { ClienteService } from '../service/cliente.service';

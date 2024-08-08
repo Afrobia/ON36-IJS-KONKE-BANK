@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
-import { randomUUID } from "crypto";
 import { UserCliente } from "../model/cliente.model";
+import { uuid } from "uuidv4";
 
 
 
@@ -11,7 +11,7 @@ export class ClienteRepository {
   constructor() {}
 
   criarCliente(cliente: UserCliente): UserCliente {
-    cliente.id = randomUUID();
+    cliente.id = uuid();
     this.clientes.push(cliente);
     return cliente;
   }

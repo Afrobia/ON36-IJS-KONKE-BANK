@@ -6,10 +6,14 @@ import { UserCliente } from '../../model/cliente.model';
 import { TipoConta } from '../../enum/conta.enum';
 import { ContaCorrente } from '../../model/contaFeature/contaCorrente';
 import { ContaPoupanca } from '../../model/contaFeature/contaPoupanca';
+import { uuid } from 'uuidv4';
+
+jest.mock('uuidv4');
 
 describe('ContasService', () => {
   let service: ContasService;
   let cliente = new UserCliente('Fatima', 'Qualquer lugar', 'telefone');
+  
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -41,16 +45,30 @@ describe('ContasService', () => {
       expect(retornado.cliente).toBe(cliente);
       expect(retornado.taxaRendimento).toBe(0.025);
       expect(retornado.saldo).toBe(10);
-      expect(retornado.id).toBeDefined();
     }
   });
 
   test('Deveria modificar o tipo de Conta', () => {
-    const conta = service.criarConta(TipoConta.POUPANCA, cliente)
-    const retornado = service.modificarTipoDeConta(conta.id,TipoConta.CORRENTE);
+    const conta = service.criarConta(TipoConta.POUPANCA, cliente);
+    const retornado = service.modificarTipoDeConta(
+      conta.id,
+      TipoConta.CORRENTE,
+    );
 
-    expect(retornado).toBeInstanceOf(ContaCorrente)
+    expect(retornado).toBeInstanceOf(ContaCorrente);
+  });
 
-  })
+  test('Deveria ser igual a conta Poupança', () => {
+    (uuid as jest.Mock).mockReturnValue('15586');
+    const retornado = service.criarConta(TipoConta.POUPANCA, cliente);
 
+    const esperado = new ContaPoupanca();
+    esperado.id = '15586';
+    esperado.tipoConta = TipoConta.POUPANCA;
+    esperado.cliente = cliente;
+    esperado.saldo = 10;
+    esperado.taxaRendimento = 0.025;
+
+    expect(retornado).toStrictEqual(esperado);
+  });
 });

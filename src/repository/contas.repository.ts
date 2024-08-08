@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
-import { randomUUID } from "crypto";
 import { TipoContas } from "../model/contas.model";
+import { uuid } from "uuidv4";
 
 
 @Injectable()
@@ -8,7 +8,7 @@ export class ContasRepository {
   contas: TipoContas[] = [];
 
   criarConta(conta: TipoContas): TipoContas {
-    conta.id = randomUUID();
+    conta.id = uuid();
     this.contas.push(conta);
     return conta;
   }

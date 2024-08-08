@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { randomUUID } from 'crypto';
 import { UserGerente } from '../model/gerente.model';
+import { uuid } from 'uuidv4';
 
 @Injectable()
 export class GerenteRepository {
@@ -13,7 +14,7 @@ export class GerenteRepository {
   }
 
   criarGerente(gerente: UserGerente): UserGerente {
-    gerente.id = randomUUID();
+    gerente.id = uuid();
     this.gerentes.push(gerente);
     return gerente;
   }

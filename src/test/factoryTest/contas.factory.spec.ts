@@ -4,6 +4,7 @@ import { ContasFactory } from "../../factory/contas.factory"
 import { ContaCorrente } from "../../model/contaFeature/contaCorrente"
 import { ContaPoupanca } from "../../model/contaFeature/contaPoupanca"
 
+
 describe('Contas factory', ()=> {
 const cliente = new UserCliente('Beatriz', 'Tão Tão distante', "6565626")  
     //criar conta conrrente
@@ -42,7 +43,7 @@ const cliente = new UserCliente('Beatriz', 'Tão Tão distante', "6565626")
         const contaFactory = new ContasFactory()
         const retornado = contaFactory.criarConta(TipoConta.INVESTIMENTO,cliente)
         
-        expect(retornado).toBeFalsy()
+        expect(retornado).toThrow()
     
     }) */
         
