@@ -1,8 +1,10 @@
-import { UserCliente } from 'src/cliente/userCliente.model';
-import { ContaCorrente } from '../../model/contaFeature/contaCorrente';
-import { ContaPoupanca } from '../../model/contaFeature/contaPoupanca';
-import { TipoConta } from '../../enum/conta.enum';
+import { UserCliente } from '../model/cliente.model';
+import { ContaCorrente } from '../model/contaFeature/contaCorrente';
+import { ContaPoupanca } from '../model/contaFeature/contaPoupanca';
+import { TipoConta } from '../enum/conta.enum';
+import { Injectable } from '@nestjs/common';
 
+@Injectable()
 export class ContasFactory {
   criarConta(
     tipo: TipoConta,

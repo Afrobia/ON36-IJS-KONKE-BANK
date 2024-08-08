@@ -1,7 +1,7 @@
-import { UserCliente } from "src/cliente/userCliente.model";
-import { ContaCorrente } from "./contaCorrente";
-import { ContaPoupanca } from "./contaPoupanca";
-import { TipoConta } from "../../enum/conta.enum";
+import { UserCliente } from "../model/cliente.model";
+import { ContaCorrente } from "../model/contaFeature/contaCorrente";
+import { ContaPoupanca } from "../model/contaFeature/contaPoupanca";
+import { TipoConta } from "../enum/conta.enum";
 
 export abstract class Contas {
   id: string;

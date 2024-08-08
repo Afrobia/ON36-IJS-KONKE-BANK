@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { UserCliente } from './userCliente.model';
-import { ClienteRepository } from './cliente.repository';
+import { UserCliente } from '../model/cliente.model';
+import { ClienteRepository } from '../repository/cliente.repository';
 @Injectable()
 export class ClienteService {
   public clientes: UserCliente[] = [];
