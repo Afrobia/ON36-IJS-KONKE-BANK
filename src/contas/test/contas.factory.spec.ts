@@ -7,7 +7,7 @@ import { ContaPoupanca } from "../model/contaPoupanca"
 describe('Contas factory', ()=> {
 const cliente = new UserCliente('Beatriz', 'Tão Tão distante', "6565626")  
     //criar conta conrrente
-    test("deveria criar uma conta corrente",()=>{
+    test("Deveria criar uma conta corrente",()=>{
         
         const contaFactory = new ContasFactory()
         const retornado = contaFactory.criarConta(TipoConta.CORRENTE, cliente)
@@ -20,7 +20,7 @@ const cliente = new UserCliente('Beatriz', 'Tão Tão distante', "6565626")
         }
     })
     //criar conta poupança
-    test('deveria criar uma conta poupanca', () => {
+    test('Deveria criar uma conta poupanca', () => {
         
         const contaFactory = new ContasFactory()
         const retornado = contaFactory.criarConta(TipoConta.POUPANCA, cliente)
@@ -34,6 +34,15 @@ const cliente = new UserCliente('Beatriz', 'Tão Tão distante', "6565626")
 
     })
 
+    //Um teste que falha quando adionado um tipo diferente de conta corrente ou poupanca, como eu implementei o default, 
+    //então antes de chegar no teste minha função já falha, para que o test funciona-se comentei o default
+    test('Um tipo diferente deveria retornar falso', () => {
+        const contaFactory = new ContasFactory()
+        const retornado = contaFactory.criarConta(TipoConta.INVESTIMENTO,cliente)
+        
+        expect(retornado).toBeFalsy()
+    
+    })
         
     
 })
