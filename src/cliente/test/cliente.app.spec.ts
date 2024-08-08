@@ -2,12 +2,10 @@ import * as supertest from 'supertest';
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import { AppModule } from '../../app.module';
-import { ClienteService } from '../cliente.service';
-import { ClienteRepository } from '../cliente.repository';
+
 
 
 describe('ClienteController', () => {
- /*  let controller: ClienteController; */
   let app: INestApplication;
 
   beforeEach(async () => {
@@ -17,7 +15,7 @@ describe('ClienteController', () => {
 
     app = moduleRef.createNestApplication();
     await app.init()
-     /*  (controller = module.get<ClienteController>(ClienteController)); */
+     
   });
 
   test('Deveria criar um cliente', () => {
