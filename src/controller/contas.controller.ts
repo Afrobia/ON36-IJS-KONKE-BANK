@@ -1,7 +1,7 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { ContasService } from './contas.service';
-import { TipoContas } from './model/contas.model';
-import { ClienteService } from '../cliente/cliente.service';
+import { ContasService } from '../service/contas.service';
+import { TipoContas } from '../model/contas.model';
+import { ClienteService } from '../service/cliente.service';
 import { TipoConta } from '../enum/conta.enum';
 
 
