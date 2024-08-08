@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import * as path from 'path';
 import * as fs from 'fs';
 import { User } from './model/user.interface';
-import { UserFactory } from './factories/user.factory';
 
 @Injectable()
 export abstract class UserService {
