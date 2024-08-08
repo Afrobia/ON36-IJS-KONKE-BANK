@@ -1,9 +1,9 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { GerenteService } from './gerente.service';
 import { UserGerente } from './userGerente.model';
-import { UserCliente } from 'src/cliente/userCliente.model';
-import { TipoContas } from 'src/contas/model/contas.model';
-import { TipoConta } from 'src/contas/enum/tipoConta';
+import { UserCliente } from '../cliente/userCliente.model';
+import { TipoContas } from '../contas/model/contas.model';
+import { TipoConta } from '../contas/enum/tipoConta';
 
 @Controller('gerente')
 export class GerenteController {

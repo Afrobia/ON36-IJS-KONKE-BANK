@@ -1,7 +1,8 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { ContasService } from './contas.service';
 import { TipoContas } from './model/contas.model';
-import { ClienteService } from 'src/cliente/cliente.service';
+import { ClienteService } from '../cliente/cliente.service';
+import { TipoConta } from './enum/tipoConta';
 
 
 @Controller('contas')
@@ -10,7 +11,7 @@ export class ContasController {
 
   @Post()
   criarConta(@Body('tipo') tipo: TipoConta, @Body('clienteId') clienteId:string): TipoContas {
-    const cliente = this.clienteService.findById(clienteId)
+    const cliente = this.clienteService.findClienteById(clienteId)
     return this.contaService.criarConta(tipo, cliente);
   }
 

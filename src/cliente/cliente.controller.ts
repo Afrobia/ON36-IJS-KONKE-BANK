@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Post } from '@nestjs/common';
 import { ClienteService } from './cliente.service';
 import { UserCliente } from './userCliente.model';
 
-@Controller('./cliente')
+@Controller('cliente')
 export class ClienteController {
     constructor(private clienteService: ClienteService) {};
 

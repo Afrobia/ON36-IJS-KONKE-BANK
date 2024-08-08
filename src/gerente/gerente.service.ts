@@ -1,11 +1,11 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
-import { ContasService } from "src/contas/contas.service";
-import { ClienteService } from "src/cliente/cliente.service";
+import { ContasService } from "../contas/contas.service";
+import { ClienteService } from "../cliente/cliente.service";
 import { UserGerente } from "./userGerente.model";
 import { GerenteRepository } from "./gerente.repository";
-import { UserCliente } from "src/cliente/userCliente.model";
-import { TipoContas } from "src/contas/model/contas.model";
-import { TipoConta } from "src/contas/enum/tipoConta";
+import { UserCliente } from "../cliente/userCliente.model";
+import { TipoContas } from "../contas/model/contas.model";
+import { TipoConta } from "../contas/enum/tipoConta";
 
 
 

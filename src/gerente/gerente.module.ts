@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { ClienteModule } from 'src/cliente/cliente.module';
-import { ContasModule } from 'src/contas/contas.module';
+import { ClienteModule } from '../cliente/cliente.module';
+import { ContasModule } from '../contas/contas.module';
 import { GerenteController } from './gerente.controller';
 import { GerenteService } from './gerente.service';
 import { GerenteRepository } from './gerente.repository';

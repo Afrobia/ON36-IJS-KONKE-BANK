@@ -12,7 +12,7 @@ describe('ClienteController', () => {
 
   beforeEach(async () => {
     const moduleRef: TestingModule = await Test.createTestingModule({
-      imports: [AppModule, ClienteService, ClienteRepository],
+      imports: [AppModule],
     }).compile();
 
     app = moduleRef.createNestApplication();
@@ -26,7 +26,7 @@ describe('ClienteController', () => {
     const telefone = '365256446';
 
     return supertest(app.getHttpServer())
-      .post('clientes')
+      .post('/cliente')
       .send({ nome, endereco, telefone })
       .expect(201)
       .expect(({ body }) => {

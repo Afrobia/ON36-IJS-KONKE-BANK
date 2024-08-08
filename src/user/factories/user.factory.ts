@@ -1,5 +1,5 @@
-import { UserCliente } from "src/cliente/userCliente.model";
-import { UserGerente } from "src/gerente/userGerente.model";
+import { UserCliente } from "../../cliente/userCliente.model"
+import { UserGerente } from "../../gerente/userGerente.model";
 
 
 export class UserFactory {
