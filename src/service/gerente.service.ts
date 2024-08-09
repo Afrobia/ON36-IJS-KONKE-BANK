@@ -73,12 +73,12 @@ export class GerenteService {
   abrirConta(gerenteId:string, clienteId:string, tipo: TipoConta):TipoContas {
     const cliente = this.clienteService.findClienteById(clienteId)
     const gerente = this.gerenteRepository.findGerenteById(gerenteId)
-
     cliente.gerente = gerente;
 
     return this.contasService.criarConta(tipo, cliente)
 
   }
+
 
   fecharConta(gerenteId: string, contaId:string): void {
     if(!this.clienteTemGerente(contaId, gerenteId)) {

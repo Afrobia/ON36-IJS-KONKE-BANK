@@ -16,10 +16,26 @@ export class ContasService {
 
   
   criarConta(tipo:TipoConta, cliente: UserCliente): TipoContas {
+    this.validarCliente(cliente, tipo)
     const conta = this.contasFactory.criarConta(tipo, cliente);
 
     return this.contasRepository.criarConta(conta)
   }
+
+  findByContaId(contaId:string) {
+    return this.contasRepository.findContaById(contaId)
+  }
+
+  validarCliente(cliente: UserCliente, tipoConta: TipoConta) {
+    const lista = this.contasRepository.filterAllContasPorTipo(tipoConta)
+    const conta = lista.find((conta) => conta.cliente === cliente) 
+
+    if(conta){
+      throw new Error('Cliente já possui conta desse tipo')
+    }
+
+  }
+  
 
   // Adapter
   modificarTipoDeConta(contaId: string, novoTipo: TipoConta): TipoContas{

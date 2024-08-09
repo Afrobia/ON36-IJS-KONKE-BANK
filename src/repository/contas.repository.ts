@@ -1,6 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { TipoContas } from "../model/contas.model";
 import { uuid } from "uuidv4";
+import { TipoConta } from "src/enum/conta.enum";
 
 
 @Injectable()
@@ -17,6 +18,7 @@ export class ContasRepository {
     this.contas = this.contas.filter((conta) => conta.id !== contaId);
   }
 
+
   findContaById(contaId: string): TipoContas | null {
     const conta = this.contas.find((conta) => conta.id === contaId);
 
@@ -31,4 +33,10 @@ export class ContasRepository {
     return this.contas
   }
 
+  filterAllContasPorTipo(tipoConta: TipoConta):TipoContas[]{
+    const listaTipo= this.contas.filter((conta) => conta.tipoConta == tipoConta)
+    return listaTipo
+  }
+  
+  
 }
