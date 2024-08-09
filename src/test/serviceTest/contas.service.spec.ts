@@ -14,7 +14,6 @@ describe('ContasService', () => {
   let service: ContasService;
   let repository: ContasRepository;
   let cliente = new UserCliente('Fatima', 'Qualquer lugar', 'telefone');
-  
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -22,7 +21,7 @@ describe('ContasService', () => {
     }).compile();
 
     service = module.get<ContasService>(ContasService);
-    repository = module.get<ContasRepository>(ContasRepository)
+    repository = module.get<ContasRepository>(ContasRepository);
   });
 
   it('should be defined', () => {
@@ -74,14 +73,21 @@ describe('ContasService', () => {
     expect(retornado).toStrictEqual(esperado);
   });
 
-  test('Minha lista de contas está recebendo minhas novas contas',() => {
+  test('Minha lista de contas está recebendo minhas novas contas', () => {
     (uuid as jest.Mock).mockReturnValue('15586');
-    
-    const esperado = service.criarConta(TipoConta.CORRENTE, cliente)
-    const retornado = repository.findContaById('15586')
 
-    expect(retornado).toBe(esperado)
+    const esperado = service.criarConta(TipoConta.CORRENTE, cliente);
+    const retornado = repository.findContaById('15586');
 
+    expect(retornado).toBe(esperado);
+    expect(retornado).toMatchObject(esperado)
+   
+  });
 
-  })
+  test('Deveria me retornar Nulo, quando não tiver um Id correspondente', () => {
+    const retornado = repository.findContaById('15586');
+
+    expect(retornado).toBeNull();
+  });
+
 });

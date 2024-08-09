@@ -19,6 +19,12 @@ export class ContasRepository {
 
   findContaById(contaId: string): TipoContas | null {
     const conta = this.contas.find((conta) => conta.id === contaId);
+
+    if(!conta) {
+      return null
+    }
+
     return conta;
   }
+
 }
