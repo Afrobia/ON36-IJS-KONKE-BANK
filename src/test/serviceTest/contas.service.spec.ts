@@ -8,6 +8,7 @@ import { ContaCorrente } from '../../model/contaFeature/contaCorrente';
 import { ContaPoupanca } from '../../model/contaFeature/contaPoupanca';
 import { uuid } from 'uuidv4';
 
+
 jest.mock('uuidv4');
 
 describe('ContasService', () => {
@@ -37,6 +38,7 @@ describe('ContasService', () => {
       expect(retornado.saldo).toBe(0);
       expect(retornado.id).toBeDefined();
     }
+
   });
 
   test('criarConta, deveria receber uma nova conta Poupanca da Factory', () => {
@@ -73,10 +75,10 @@ describe('ContasService', () => {
     expect(retornado).toStrictEqual(esperado);
   });
 
-  test('Minha lista de contas está recebendo minhas novas contas', () => {
+  test('Minha lista de contas está recebendo minhas novas contas, buscando pelo ID', () => {
     (uuid as jest.Mock).mockReturnValue('15586');
-
     const esperado = service.criarConta(TipoConta.CORRENTE, cliente);
+
     const retornado = repository.findContaById('15586');
 
     expect(retornado).toBe(esperado);
@@ -90,4 +92,28 @@ describe('ContasService', () => {
     expect(retornado).toBeNull();
   });
 
+  test('Deveria remover cliente, não encontrar o objeto quando chamado', () => {
+    (uuid as jest.Mock).mockReturnValue('598624');
+    const conta = service.criarConta(TipoConta.CORRENTE, cliente);
+    service.removerConta(conta.id)
+
+
+    const retornado = repository.findContaById('598624');
+    expect(retornado).toBeNull()
+    
+  })
+
+  test('Service está criando contas Duplicadas', ()=>{
+    const esperado1 = service.criarConta(TipoConta.POUPANCA, cliente);
+    const esperado2 = service.criarConta(TipoConta.POUPANCA, cliente);
+
+    expect(esperado1).toBeInstanceOf(ContaPoupanca);
+    expect(esperado2).toBeInstanceOf(ContaPoupanca);
+
+    expect(esperado1.cliente).toStrictEqual(esperado2.cliente)
+
+    //necessário verificação de cliente antes de criar conta, 
+    //para cliente não ter mais de uma conta do mesmo tipo
+  })
+  
 });

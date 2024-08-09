@@ -27,4 +27,8 @@ export class ContasRepository {
     return conta;
   }
 
+  findAllContas(): TipoContas[]{
+    return this.contas
+  }
+
 }
