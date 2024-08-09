@@ -12,6 +12,7 @@ jest.mock('uuidv4');
 
 describe('ContasService', () => {
   let service: ContasService;
+  let repository: ContasRepository;
   let cliente = new UserCliente('Fatima', 'Qualquer lugar', 'telefone');
   
 
@@ -21,6 +22,7 @@ describe('ContasService', () => {
     }).compile();
 
     service = module.get<ContasService>(ContasService);
+    repository = module.get<ContasRepository>(ContasRepository)
   });
 
   it('should be defined', () => {
@@ -71,4 +73,15 @@ describe('ContasService', () => {
 
     expect(retornado).toStrictEqual(esperado);
   });
+
+  test('Minha lista de contas está recebendo minhas novas contas',() => {
+    (uuid as jest.Mock).mockReturnValue('15586');
+    
+    const esperado = service.criarConta(TipoConta.CORRENTE, cliente)
+    const retornado = repository.findContaById('15586')
+
+    expect(retornado).toBe(esperado)
+
+
+  })
 });

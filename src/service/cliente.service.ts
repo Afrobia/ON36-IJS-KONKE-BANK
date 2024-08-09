@@ -3,7 +3,6 @@ import { UserCliente } from '../model/cliente.model';
 import { ClienteRepository } from '../repository/cliente.repository';
 @Injectable()
 export class ClienteService {
-  public clientes: UserCliente[] = [];
 
   constructor(private clienteRepository: ClienteRepository) {}
 
