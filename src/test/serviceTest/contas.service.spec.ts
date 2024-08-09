@@ -8,7 +8,6 @@ import { ContaCorrente } from '../../model/contaFeature/contaCorrente';
 import { ContaPoupanca } from '../../model/contaFeature/contaPoupanca';
 import { uuid } from 'uuidv4';
 
-
 jest.mock('uuidv4');
 
 describe('ContasService', () => {
@@ -38,7 +37,6 @@ describe('ContasService', () => {
       expect(retornado.saldo).toBe(0);
       expect(retornado.id).toBeDefined();
     }
-
   });
 
   test('criarConta, deveria receber uma nova conta Poupanca da Factory', () => {
@@ -82,8 +80,7 @@ describe('ContasService', () => {
     const retornado = repository.findContaById('15586');
 
     expect(retornado).toBe(esperado);
-    expect(retornado).toMatchObject(esperado)
-   
+    expect(retornado).toMatchObject(esperado);
   });
 
   test('Deveria me retornar Nulo, quando não tiver um Id correspondente', () => {
@@ -95,57 +92,84 @@ describe('ContasService', () => {
   test.failing('Teste de falha, se o retornado for uma conta', () => {
     (uuid as jest.Mock).mockReturnValue('598624');
     const conta = service.criarConta(TipoConta.CORRENTE, cliente);
-    service.removerConta(conta.id)
-
+    service.removerConta(conta.id);
 
     const retornado = repository.findContaById('598624');
-    expect(retornado).toBe(conta)
-    
-  })
+    expect(retornado).toBe(conta);
+  });
 
   test('Deveria remover cliente, não encontrar o objeto quando chamado', () => {
     (uuid as jest.Mock).mockReturnValue('598624');
     const conta = service.criarConta(TipoConta.CORRENTE, cliente);
-    service.removerConta(conta.id)
-
+    service.removerConta(conta.id);
 
     const retornado = repository.findContaById('598624');
-    expect(retornado).toBeNull()
-    
-  })
+    expect(retornado).toBeNull();
+  });
 
-  test.failing('Deve falhar caso cliente tente criar duas contas do mesmo tipoPoupança', ()=>{
-    const conta = service.criarConta(TipoConta.POUPANCA, cliente);
-    
-    if(conta instanceof ContaPoupanca){
-      const esperado2 = service.criarConta(TipoConta.POUPANCA, cliente);
-      
-      expect(esperado2).toBeInstanceOf(ContaPoupanca)
-    }
+  test.failing(
+    'Deve falhar caso cliente tente criar duas contas do mesmo tipoPoupança',
+    () => {
+      const conta = service.criarConta(TipoConta.POUPANCA, cliente);
 
+      if (conta instanceof ContaPoupanca) {
+        const esperado2 = service.criarConta(TipoConta.POUPANCA, cliente);
 
-  })
+        expect(esperado2).toBeInstanceOf(ContaPoupanca);
+      }
+    },
+  );
 
-  test.failing('Deve falhar caso cliente tente criar duas contas do mesmo tipoCorrente', ()=>{
-    const conta = service.criarConta(TipoConta.CORRENTE, cliente);
-    
-    if(conta instanceof ContaCorrente){
-      const esperado2 = service.criarConta(TipoConta.CORRENTE, cliente);
-      
-      expect(esperado2).toBeInstanceOf(ContaCorrente)
-    }
+  test.failing(
+    'Deve falhar caso cliente tente criar duas contas do mesmo tipoCorrente',
+    () => {
+      const conta = service.criarConta(TipoConta.CORRENTE, cliente);
 
+      if (conta instanceof ContaCorrente) {
+        const esperado2 = service.criarConta(TipoConta.CORRENTE, cliente);
 
-  })
+        expect(esperado2).toBeInstanceOf(ContaCorrente);
+      }
+    },
+  );
 
-  test('Cliente deve pode criar 1 conta corrente e uma conta poupança', () => {
+  test('Cliente deve pode ter 1 conta corrente e uma conta poupança', () => {
     const contaC = service.criarConta(TipoConta.CORRENTE, cliente);
-    
-    if(contaC instanceof ContaCorrente){
+
+    if (contaC instanceof ContaCorrente) {
       const contaP = service.criarConta(TipoConta.POUPANCA, cliente);
-      
-      expect(contaP).toBeInstanceOf(ContaPoupanca)
+
+      expect(contaP).toBeInstanceOf(ContaPoupanca);
     }
-  })
-  
+  });
+
+  test('Conta deve conseguir fazer depositar', () => {
+    const conta = service.criarConta(TipoConta.CORRENTE, cliente);
+    service.doDeposito(conta.id,50)
+
+    const esperado = 50
+    const retornado = conta.saldo
+
+    expect(retornado).toBe(esperado)
+  });
+
+  test.failing('Conta não deve conseguir sacar', () => {
+    const conta = service.criarConta(TipoConta.CORRENTE, cliente);
+    const retornado = service.doSaque(conta.id,50)
+
+    expect(retornado).toBe(true)
+  });
+
+  test('Conta deve conseguir sacar', () => {
+    const conta = service.criarConta(TipoConta.CORRENTE, cliente);
+    service.doDeposito(conta.id,100)
+    const retornado = service.doSaque(conta.id,50)
+
+    expect(retornado).toBe(true)
+    expect(conta.saldo).toBe(50)
+  });
+
+
+
+
 });
