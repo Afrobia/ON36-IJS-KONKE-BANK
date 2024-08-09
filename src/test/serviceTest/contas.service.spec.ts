@@ -92,6 +92,17 @@ describe('ContasService', () => {
     expect(retornado).toBeNull();
   });
 
+  test.failing('Teste de falha, se o retornado for uma conta', () => {
+    (uuid as jest.Mock).mockReturnValue('598624');
+    const conta = service.criarConta(TipoConta.CORRENTE, cliente);
+    service.removerConta(conta.id)
+
+
+    const retornado = repository.findContaById('598624');
+    expect(retornado).toBe(conta)
+    
+  })
+
   test('Deveria remover cliente, não encontrar o objeto quando chamado', () => {
     (uuid as jest.Mock).mockReturnValue('598624');
     const conta = service.criarConta(TipoConta.CORRENTE, cliente);
@@ -103,17 +114,38 @@ describe('ContasService', () => {
     
   })
 
-  test('Service está criando contas Duplicadas', ()=>{
-    const esperado1 = service.criarConta(TipoConta.POUPANCA, cliente);
-    const esperado2 = service.criarConta(TipoConta.POUPANCA, cliente);
+  test.failing('Deve falhar caso cliente tente criar duas contas do mesmo tipoPoupança', ()=>{
+    const conta = service.criarConta(TipoConta.POUPANCA, cliente);
+    
+    if(conta instanceof ContaPoupanca){
+      const esperado2 = service.criarConta(TipoConta.POUPANCA, cliente);
+      
+      expect(esperado2).toBeInstanceOf(ContaPoupanca)
+    }
 
-    expect(esperado1).toBeInstanceOf(ContaPoupanca);
-    expect(esperado2).toBeInstanceOf(ContaPoupanca);
 
-    expect(esperado1.cliente).toStrictEqual(esperado2.cliente)
+  })
 
-    //necessário verificação de cliente antes de criar conta, 
-    //para cliente não ter mais de uma conta do mesmo tipo
+  test.failing('Deve falhar caso cliente tente criar duas contas do mesmo tipoCorrente', ()=>{
+    const conta = service.criarConta(TipoConta.CORRENTE, cliente);
+    
+    if(conta instanceof ContaCorrente){
+      const esperado2 = service.criarConta(TipoConta.CORRENTE, cliente);
+      
+      expect(esperado2).toBeInstanceOf(ContaCorrente)
+    }
+
+
+  })
+
+  test('Cliente deve pode criar 1 conta corrente e uma conta poupança', () => {
+    const contaC = service.criarConta(TipoConta.CORRENTE, cliente);
+    
+    if(contaC instanceof ContaCorrente){
+      const contaP = service.criarConta(TipoConta.POUPANCA, cliente);
+      
+      expect(contaP).toBeInstanceOf(ContaPoupanca)
+    }
   })
   
 });
