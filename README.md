@@ -136,13 +136,21 @@ Requisitos de negócio:
 
 ## Desafio 05 - {Reprograma}Bank
 
-- Ficou explicido durante a semana o quanto a formulação de testes e o TDD são essenciais na construção de código
+- Ficou explícito durante a semana o quanto a formulação de testes e o TDD são essenciais na construção de código
 - Escrevi testes unitários para todas as classes de Contas Service e Contas Factory 
-- Criei testes de integração para a API, verificando a interação dos endpoints (POST)de Contas e de Cliente, utilizando superteste.
-- Ajuste de BUG após teste, refatorando o coódigo pra que um cliente não tenha mais de 1 conta do mesmo tipo 
+- Criei testes de integração para a API, verificando a interação dos endpoints (POST)de Contas e de Cliente, utilizando supertest.
+- Ajuste de BUG após teste, refatorando o código pra que um cliente não tenha mais de 1 conta do mesmo tipo 
+Identificação do erro
+![Captura de tela 2024-08-09 155738](https://github.com/user-attachments/assets/1718135b-7507-4704-9915-192670e67995)
 
-- Reloquei os arquivos, por funcionalidade pra melhor visulização
-- Utilizei do TDD para implementar funcionalidade novas com saque, depositivo e atualização de saldo no service
+Após correção, com um código que deveria falhar
+![Captura de tela 2024-08-09 170710](https://github.com/user-attachments/assets/f6c67b7e-3978-4523-8caf-d9931c413cd9)
+
+![Captura de tela 2024-08-09 215134](https://github.com/user-attachments/assets/6df8e0c4-b8bd-4164-b8b4-e188de2e9c28)
+
+- Utilizei do TDD para implementar funcionalidade novas com saque, deposito e atualização de saldo no service
+
+![Captura de tela 2024-08-09 215330](https://github.com/user-attachments/assets/63a3c046-760d-48bb-bf5e-ae3415e68c89)
 
 ### Working in progess
   - Escrever testes unitários para todas as classes criadas até agora (Cliente, Gerente, Conta, ContaCorrente, ContaPoupanca)
