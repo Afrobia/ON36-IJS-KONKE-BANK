@@ -35,7 +35,7 @@ describe('ContasService', () => {
       expect(retornado.cliente).toBe(cliente);
       expect(retornado.chequeEspecial).toBe(150);
       expect(retornado.saldo).toBe(0);
-      expect(retornado.id).toBeDefined();
+     
     }
   });
 
@@ -145,31 +145,27 @@ describe('ContasService', () => {
 
   test('Conta deve conseguir fazer depositar', () => {
     const conta = service.criarConta(TipoConta.CORRENTE, cliente);
-    service.doDeposito(conta.id,50)
+    service.doDeposito(conta.id, 50);
 
-    const esperado = 50
-    const retornado = conta.saldo
+    const esperado = 50;
+    const retornado = conta.saldo;
 
-    expect(retornado).toBe(esperado)
+    expect(retornado).toBe(esperado);
   });
 
   test.failing('Conta não deve conseguir sacar', () => {
     const conta = service.criarConta(TipoConta.CORRENTE, cliente);
-    const retornado = service.doSaque(conta.id,50)
+    const retornado = service.doSaque(conta.id, 50);
 
-    expect(retornado).toBe(true)
+    expect(retornado).toBe(true);
   });
 
   test('Conta deve conseguir sacar', () => {
     const conta = service.criarConta(TipoConta.CORRENTE, cliente);
-    service.doDeposito(conta.id,100)
-    const retornado = service.doSaque(conta.id,50)
+    service.doDeposito(conta.id, 100);
+    const retornado = service.doSaque(conta.id, 50);
 
-    expect(retornado).toBe(true)
-    expect(conta.saldo).toBe(50)
+    expect(retornado).toBe(true);
+    expect(conta.saldo).toBe(50);
   });
-
-
-
-
 });

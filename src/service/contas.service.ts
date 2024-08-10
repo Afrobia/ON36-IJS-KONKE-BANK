@@ -50,13 +50,13 @@ export class ContasService {
     const conta = this.findByContaId(contaId);
     const novoSaldo = conta.saque(valor);
 
-     if(isNaN(novoSaldo)){
-      return false
-     } 
+    if (isNaN(novoSaldo)) {
+      return false;
+    }
 
-     this.atualizarSaldo(conta, novoSaldo);
+    this.atualizarSaldo(conta, novoSaldo);
 
-    return true
+    return true;
   }
 
   doDeposito(contaId: string, valor: number): number {
@@ -67,6 +67,10 @@ export class ContasService {
   }
 
   atualizarSaldo(conta: TipoContas, valor: number): number {
-    return conta.saldo = valor;
+    return (conta.saldo = valor);
+  }
+
+  filterTConta(tipo: TipoConta): TipoContas[]{
+    return this.contasRepository.filterAllContasPorTipo(tipo)
   }
 }

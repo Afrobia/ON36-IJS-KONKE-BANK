@@ -2,8 +2,6 @@ import { Injectable } from "@nestjs/common";
 import { UserCliente } from "../model/cliente.model";
 import { uuid } from "uuidv4";
 
-
-
 @Injectable()
 export class ClienteRepository {
   private clientes: UserCliente[] = [];
