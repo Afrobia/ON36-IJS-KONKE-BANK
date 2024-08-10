@@ -125,3 +125,26 @@ Requisitos de negócio:
 - Atualizar a classe Conta para manter uma referência ao cliente associado a ela.
 - Implementar métodos na classe Gerente para adicionar e remover clientes, bem como para abrir, fechar e modificar o tipo de conta para um determinado cliente.
 - Organizar a estrutura do projeto de forma apropriada, seguindo as melhores práticas para uma API RESTful.
+
+## Desafio 04 - {Reprograma}Bank
+
+- Explorar práticas recomendadas para criar um design de código claro e eficiente
+- Aplicar SOLID, DRY e KISS
+- Implementei padrões de código PD_Factory, PD_Adapter,
+- Identificando como os padrões de design influenciam a estrutura e organização de um sistema.
+- Refatoração do código
+
+## Desafio 05 - {Reprograma}Bank
+
+- Ficou explicido durante a semana o quanto a formulação de testes e o TDD são essenciais na construção de código
+- Escrevi testes unitários para todas as classes de Contas Service e Contas Factory 
+- Criei testes de integração para a API, verificando a interação dos endpoints (POST)de Contas e de Cliente, utilizando superteste.
+- Ajuste de BUG após teste, refatorando o coódigo pra que um cliente não tenha mais de 1 conta do mesmo tipo 
+
+- Reloquei os arquivos, por funcionalidade pra melhor visulização
+- Utilizei do TDD para implementar funcionalidade novas com saque, depositivo e atualização de saldo no service
+
+### Working in progess
+  - Escrever testes unitários para todas as classes criadas até agora (Cliente, Gerente, Conta, ContaCorrente, ContaPoupanca)
+  - Desenvolver testes end-to-end para garantir que o fluxo completo do usuário funcione corretamente (exemplo: criação de cliente, abertura de conta, realização de transferência).
+
