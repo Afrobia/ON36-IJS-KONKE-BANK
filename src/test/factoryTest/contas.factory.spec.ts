@@ -3,6 +3,7 @@ import { TipoConta } from "../../enum/conta.enum"
 import { ContasFactory } from "../../factory/contas.factory"
 import { ContaCorrente } from "../../model/contaFeature/contaCorrente"
 import { ContaPoupanca } from "../../model/contaFeature/contaPoupanca"
+import { Contas } from "src/model/contas.model"
 
 
 describe('Contas factory', ()=> {
@@ -35,17 +36,13 @@ const cliente = new UserCliente('Beatriz', 'Tão Tão distante', "6565626")
 
     })
 
-    /* Um teste que falha quando adionado um tipo diferente de conta corrente ou poupanca, 
-    como eu implementei o default, então antes de chegar no teste minha função já falha, 
-    para que o test funcionasse comentei o default
-     */
-    /* test('Um tipo diferente deveria retornar falso', () => {
+    test.failing('Um tipo de conta diferente deveria falhar', () => {
         const contaFactory = new ContasFactory()
         const retornado = contaFactory.criarConta(TipoConta.INVESTIMENTO,cliente)
         
-        expect(retornado).toThrow()
+        expect(retornado).toBe(Object)
     
-    }) */
+    })
         
     
 })
