@@ -11,11 +11,12 @@ import { ClienteModule } from './module/cliente.module';
 import { ContasService } from './service/contas.service';
 import { ContasController } from './controller/contas.controller';
 import { ClienteController } from './controller/cliente.controller';
+import { ClienteFactory } from './factory/userCliente.factory';
 
 
 @Module({
   imports: [AppModule, ContasModule, GerenteModule, ClienteModule],
   controllers: [AppController, GerenteController, ContasController, ClienteController],
-  providers: [AppService, ClienteService, GerenteService,ContasFactory, ContasService],
+  providers: [AppService, ClienteService, ClienteFactory, GerenteService,ContasFactory, ContasService],
 })
 export class AppModule {}

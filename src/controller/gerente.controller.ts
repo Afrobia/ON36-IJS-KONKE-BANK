@@ -34,12 +34,7 @@ export class GerenteController {
 
   }
 
-  // endpoints de Cliente
-  @Post(':gerenteId/clients')
-  addClient(@Param('gerenteId') gerenteId: string, @Body() cliente: UserCliente,): UserCliente {
-    return this.gerenteService.adicionarCliente(gerenteId, cliente);
 
-  }
 
   @Delete(':gerenteId/clientes/:clienteId')
   removerClient( @Param('gerenteId') gerenteId: string, @Param('clientId') clientId: string,): void {

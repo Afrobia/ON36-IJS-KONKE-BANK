@@ -1,37 +1,53 @@
 import { Injectable } from '@nestjs/common';
-import { UserCliente } from '../model/cliente.model';
+import { TClientes } from '../model/cliente.model';
 import { ClienteRepository } from '../repository/cliente.repository';
+import { TipoCliente } from '../enum/cliente.enum';
+import { ClienteFactory } from '../factory/userCliente.factory';
+import { User } from '../model/user.model';
+import { UserGerente } from '../model/gerente.model';
 @Injectable()
 export class ClienteService {
+  constructor(
+    readonly clienteFactory: ClienteFactory,
+    readonly clienteRepository: ClienteRepository,
+  ) {}
 
-  constructor(private clienteRepository: ClienteRepository) {}
-
-  criarCliente(cliente: UserCliente): UserCliente {
+  criarCliente(
+    tipo: TipoCliente,
+    usuario: User,
+    gerente: UserGerente,
+  ): TClientes {
+    const cliente = this.clienteFactory.criarCliente(tipo, usuario, gerente);
     return this.clienteRepository.criarCliente(cliente);
   }
 
-  findAllClientes(): UserCliente[] {
+  findAllClientes(): TClientes[] {
     return this.clienteRepository.findAllClientes();
   }
 
-  findClienteById(clienteId: string): UserCliente {
+  findClienteById(clienteId: string): TClientes {
     return this.clienteRepository.getClienteById(clienteId);
   }
 
-  findClienteByConta(contaId: string): UserCliente {
+  findClienteByConta(contaId: string): TClientes {
     return this.clienteRepository.findClienteByContaId(contaId);
   }
 
-  findClienteByGerenteId(gerenteId: string): UserCliente[] | null {
+  findClienteByGerenteId(gerenteId: string): TClientes[] | null {
     return this.clienteRepository.findClientesByGerenteId(gerenteId);
   }
 
-  findClientebyIdeGerenteId(clienteId:string, gerenteId: string): UserCliente| null {
-    return this.clienteRepository.findClienteByIdEGerenteId(clienteId,gerenteId)
+  findClientebyIdeGerenteId(
+    clienteId: string,
+    gerenteId: string,
+  ): TClientes | null {
+    return this.clienteRepository.findClienteByIdEGerenteId(
+      clienteId,
+      gerenteId,
+    );
   }
 
   removerCliente(clienteId: string): void {
     this.clienteRepository.removerCliente(clienteId);
   }
-  
 }

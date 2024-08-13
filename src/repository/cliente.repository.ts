@@ -1,38 +1,38 @@
 import { Injectable } from "@nestjs/common";
-import { UserCliente } from "../model/cliente.model";
+import { TClientes, UserCliente} from "../model/cliente.model";
 import { uuid } from "uuidv4";
 
 @Injectable()
 export class ClienteRepository {
-  private clientes: UserCliente[] = [];
+  private clientes: TClientes[] = [];
 
   constructor() {}
 
-  criarCliente(cliente: UserCliente): UserCliente {
+  criarCliente(cliente: TClientes): TClientes {
     cliente.id = uuid();
     this.clientes.push(cliente);
     return cliente;
   }
 
-  findAllClientes(): UserCliente[] {
+  findAllClientes(): TClientes[] {
     return this.clientes;
 
   }
 
-  findClientesByGerenteId(gerenteId: string): UserCliente[] {
-    return this.clientes.filter((cliente) => cliente.gerente.id === gerenteId);
+  findClientesByGerenteId(gerenteId: string): TClientes[] {
+    return this.clientes.filter((cliente) => cliente.gerenteId === gerenteId);
 
   }
 
-  findClienteByIdEGerenteId(clienteId: string, gerenteId: string): UserCliente | null {
+  findClienteByIdEGerenteId(clienteId: string, gerenteId: string): TClientes | null {
     const cliente = this.clientes.find(
-      (cliente) => cliente.id === clienteId && cliente.gerente.id === gerenteId,
+      (cliente) => cliente.id === clienteId && cliente.gerenteId === gerenteId,
     );
 
     return cliente;
   }
 
-  findClienteByContaId(contaId: string): UserCliente | null {
+  findClienteByContaId(contaId: string): TClientes | null {
     const cliente = this.clientes.find((cliente) => {
       return cliente.contas.some((conta) => conta.id === contaId);
     });
@@ -40,7 +40,7 @@ export class ClienteRepository {
     return cliente;
   }
 
-  getClienteById(clienteId: string): UserCliente | null {
+  getClienteById(clienteId: string): TClientes | null {
     const cliente = this.clientes.find((cliente) => cliente.id === clienteId);
 
     return cliente;

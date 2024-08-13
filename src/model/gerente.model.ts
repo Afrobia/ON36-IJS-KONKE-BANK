@@ -1,14 +1,12 @@
-import { UserCliente } from "./cliente.model";
+import { UserCliente } from './cliente.model';
 
-
-export class UserGerente{
+export class UserGerente {
   id: string;
   nome: string;
-  clientes: UserCliente[]
-  
-  constructor(nome:string) {
+  clientes: UserCliente[];
+
+  constructor(nome: string) {
     this.nome = nome;
-    this.clientes = []
+    this.clientes = [];
   }
-    
 }
