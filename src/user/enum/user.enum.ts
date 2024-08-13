@@ -1,4 +1,0 @@
-enum TipoUser {
-    GERENTE,
-    CLIENTE
-}
