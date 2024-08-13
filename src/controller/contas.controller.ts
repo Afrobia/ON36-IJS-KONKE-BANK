@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/commo
 import { ContasService } from '../service/contas.service';
 import { TipoContas } from '../model/contas.model';
 import { TipoConta } from '../enum/conta.enum';
-import { UserCliente } from '../model/cliente.model';
+import { TClientes} from '../model/cliente.model';
 
 
 @Controller('contas')
@@ -10,7 +10,7 @@ export class ContasController {
   constructor(private readonly contaService: ContasService) {}
 
   @Post()
-  criarConta(@Body('tipo') tipo: TipoConta, @Body('clienteId') cliente: UserCliente): TipoContas {
+  criarConta(@Body('tipo') tipo: TipoConta, @Body('clienteId') cliente: TClientes): TipoContas {
     return this.contaService.criarConta(tipo, cliente);
   }
 

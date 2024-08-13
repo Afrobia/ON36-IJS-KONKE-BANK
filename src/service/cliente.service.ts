@@ -17,7 +17,9 @@ export class ClienteService {
     usuario: User,
     gerente: UserGerente,
   ): TClientes {
-    const cliente = this.clienteFactory.criarCliente(tipo, usuario, gerente);
+    //validarGerente
+    const cliente = this.clienteFactory.criarCliente(tipo, usuario);
+    cliente.gerente = gerente
     return this.clienteRepository.criarCliente(cliente);
   }
 

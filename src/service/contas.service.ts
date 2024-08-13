@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { ContasFactory } from '../factory/contas.factory';
 import { ContasRepository } from '../repository/contas.repository';
-import { UserCliente } from '../model/cliente.model';
+import { TClientes } from '../model/cliente.model';
 import { TipoContas } from '../model/contas.model';
 import { TipoConta } from '../enum/conta.enum';
+
 
 @Injectable()
 export class ContasService {
@@ -12,7 +13,7 @@ export class ContasService {
     private readonly contasFactory: ContasFactory,
   ) {}
 
-  criarConta(tipo: TipoConta, cliente: UserCliente): TipoContas {
+  criarConta(tipo: TipoConta, cliente: TClientes): TipoContas {
     this.validarCliente(cliente, tipo);
     const conta = this.contasFactory.criarConta(tipo, cliente);
 
@@ -23,19 +24,18 @@ export class ContasService {
     return this.contasRepository.findContaById(contaId);
   }
 
-  validarCliente(cliente: UserCliente, tipoConta: TipoConta) {
+  validarCliente(cliente: TClientes, tipoConta: TipoConta) {
     const lista = this.contasRepository.filterAllContasPorTipo(tipoConta);
-    const conta = lista.find((conta) => conta.cliente === cliente);
+    const conta = lista.find((conta) => conta.cliente === cliente.id);
 
     if (conta) {
       throw new Error('Cliente já possui conta desse tipo');
     }
   }
 
-  // Adapter
-  modificarTipoDeConta(contaId: string, novoTipo: TipoConta): TipoContas {
+  modificarTipoDeConta(contaId: string, novoTipo: TipoConta, cliente: TClientes): TipoContas {
     const conta = this.contasRepository.findContaById(contaId);
-    const cliente = conta.cliente;
+    const clientes = conta.cliente;
 
     this.removerConta(contaId);
 

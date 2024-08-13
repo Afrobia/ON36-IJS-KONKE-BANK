@@ -14,7 +14,7 @@ import { ClienteRepository } from '../../repository/cliente.repository';
 describe('ContasController', () => {
   let controller: ContasController;
   let app: INestApplication
-  let cliente = new UserCliente('Fatima', 'Qualquer lugar', 'telefone');
+ 
 
     beforeEach(async () => {
       const module: TestingModule = await Test.createTestingModule({

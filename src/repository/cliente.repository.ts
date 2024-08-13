@@ -1,6 +1,7 @@
-import { Injectable } from "@nestjs/common";
-import { TClientes, UserCliente} from "../model/cliente.model";
-import { uuid } from "uuidv4";
+import { Injectable } from '@nestjs/common';
+import { TClientes } from '../model/cliente.model';
+import { uuid } from 'uuidv4';
+
 
 @Injectable()
 export class ClienteRepository {
@@ -16,17 +17,18 @@ export class ClienteRepository {
 
   findAllClientes(): TClientes[] {
     return this.clientes;
-
   }
 
   findClientesByGerenteId(gerenteId: string): TClientes[] {
-    return this.clientes.filter((cliente) => cliente.gerenteId === gerenteId);
-
+    return this.clientes.filter((cliente) => cliente.gerente.id === gerenteId);
   }
 
-  findClienteByIdEGerenteId(clienteId: string, gerenteId: string): TClientes | null {
+  findClienteByIdEGerenteId(
+    clienteId: string,
+    gerenteId: string,
+  ): TClientes | null {
     const cliente = this.clientes.find(
-      (cliente) => cliente.id === clienteId && cliente.gerenteId === gerenteId,
+      (cliente) => cliente.id === clienteId && cliente.gerente.id === gerenteId,
     );
 
     return cliente;

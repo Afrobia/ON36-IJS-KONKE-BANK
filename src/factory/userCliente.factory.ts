@@ -10,14 +10,12 @@ export class ClienteFactory {
   criarCliente(
     tipo: TipoCliente,
     usuario: User,
-    gerente: UserGerente,
   ): ClienteFisico | ClienteJuridico {
     switch (tipo) {
       case TipoCliente.FISICO:
         const clienteFisico = new ClienteFisico();
         clienteFisico.usuario = usuario;
         clienteFisico.contas = [];
-        clienteFisico.gerenteId = gerente.id;
         clienteFisico.tipoCliente = TipoCliente.FISICO;
 
         return clienteFisico;
@@ -26,7 +24,6 @@ export class ClienteFactory {
         const clienteJuridico = new ClienteJuridico();
         clienteJuridico.usuario = usuario;
         clienteJuridico.contas = [];
-        clienteJuridico.gerenteId = gerente.id;
         clienteJuridico.tipoCliente = TipoCliente.JURIDICO;
 
         return clienteJuridico;

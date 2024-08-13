@@ -1,4 +1,3 @@
-import { UserCliente } from "../model/cliente.model";
 import { ContaCorrente } from "../model/contaFeature/contaCorrente";
 import { ContaPoupanca } from "../model/contaFeature/contaPoupanca";
 import { TipoConta } from "../enum/conta.enum";
@@ -7,7 +6,7 @@ export abstract class Contas {
   id: string;
   tipoConta: TipoConta.CORRENTE | TipoConta.POUPANCA;
   saldo: number;
-  cliente: UserCliente;
+  cliente: string;
 
   getSaldo(): number {
     return this.saldo;

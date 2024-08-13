@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { randomUUID } from 'crypto';
 import { UserGerente } from '../model/gerente.model';
 import { uuid } from 'uuidv4';
 
