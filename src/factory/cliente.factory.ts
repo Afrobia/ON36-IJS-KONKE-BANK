@@ -1,20 +1,23 @@
 import { Injectable } from '@nestjs/common';
 import { TipoCliente } from '../enum/cliente.enum';
-import { UserGerente } from '../model/gerente.model';
 import { ClienteFisico } from '../model/clienteFeature/clienteFisico.model';
-import { User } from 'src/model/user.model';
 import { ClienteJuridico } from '../model/clienteFeature/clienteJuridico.model';
+import { CreateClienteDto } from '../dto/create-cliente.dto';
 
 @Injectable()
 export class ClienteFactory {
   criarCliente(
     tipo: TipoCliente,
-    usuario: User,
+    createClienteDto: CreateClienteDto
   ): ClienteFisico | ClienteJuridico {
     switch (tipo) {
       case TipoCliente.FISICO:
         const clienteFisico = new ClienteFisico();
-        clienteFisico.usuario = usuario;
+        clienteFisico.nome = createClienteDto.nome;
+        clienteFisico.endereco = createClienteDto.cep;
+        clienteFisico.telefone = createClienteDto.telefone;
+        clienteFisico.cpf = createClienteDto.cadastroUnico;
+        clienteFisico.gerente = null;
         clienteFisico.contas = [];
         clienteFisico.tipoCliente = TipoCliente.FISICO;
 
@@ -22,7 +25,11 @@ export class ClienteFactory {
 
       case TipoCliente.JURIDICO:
         const clienteJuridico = new ClienteJuridico();
-        clienteJuridico.usuario = usuario;
+        clienteJuridico.nome = createClienteDto.nome;
+        clienteJuridico.endereco = createClienteDto.cep;
+        clienteJuridico.telefone = createClienteDto.telefone;
+        clienteJuridico.cnpj = createClienteDto.cadastroUnico;
+        clienteFisico.gerente = null;
         clienteJuridico.contas = [];
         clienteJuridico.tipoCliente = TipoCliente.JURIDICO;
 

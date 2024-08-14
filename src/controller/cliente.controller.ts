@@ -1,17 +1,18 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, UseInterceptors } from '@nestjs/common';
 import { ClienteService } from '../service/cliente.service';
 import { TClientes} from '../model/cliente.model';
 import { TipoCliente } from '../enum/cliente.enum';
-import { User } from '../model/user.model';
-import { UserGerente } from '../model/gerente.model';
+import { CreateClienteDto } from '../dto/create-cliente.dto';
+import { CepValidationInterceptor } from '../cep/cep-validator.interceptor';
 
 @Controller('cliente')
+@UseInterceptors(CepValidationInterceptor)
 export class ClienteController {
   constructor(private clienteService: ClienteService) {}
 
   @Post()
-  criarCliente(@Param('gerente') gerente: UserGerente,@Body('tipoCliente') tipo: TipoCliente, @Body() usuario: User): TClientes {
-    return this.clienteService.criarCliente(tipo, usuario, gerente);
+  criarCliente(@Body('tipoCliente') tipo: TipoCliente, @Body() cliente: CreateClienteDto):TClientes {
+    return this.clienteService.criarCliente(tipo, cliente);
   }
 
   @Get()

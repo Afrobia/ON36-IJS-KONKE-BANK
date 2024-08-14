@@ -36,7 +36,7 @@ export class GerenteController {
 
 
 
-  @Delete(':gerenteId/clientes/:clienteId')
+  /* @Delete(':gerenteId/clientes/:clienteId')
   removerClient( @Param('gerenteId') gerenteId: string, @Param('clientId') clientId: string,): void {
     return this.gerenteService.removerCliente(gerenteId, clientId);
 
@@ -70,6 +70,6 @@ export class GerenteController {
     @Body('novoTipo') novoTipo: TipoConta,
   ): TipoContas {
     return this.gerenteService.modificarTipoDeConta(gerenteId, contaId, novoTipo);
-  }
+  } */
     
 }

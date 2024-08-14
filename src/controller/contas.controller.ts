@@ -23,6 +23,7 @@ export class ContasController {
   doSaque(@Param('contaId') contaId: string, @Body('valor')valor:number):void {
     this.contaService.doSaque(contaId, valor)
   }
+  
   @Patch('deposito')
   doDeposito(@Param('contaId') contaId: string, @Body('valor')valor:number):void {
     this.contaService.doDeposito(contaId, valor)
@@ -32,6 +33,5 @@ export class ContasController {
   removerConta(contaId:string){
     return this.contaService.removerConta(contaId)
   }
-  
 
 }

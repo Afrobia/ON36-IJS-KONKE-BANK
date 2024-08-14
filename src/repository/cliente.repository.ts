@@ -20,7 +20,7 @@ export class ClienteRepository {
   }
 
   findClientesByGerenteId(gerenteId: string): TClientes[] {
-    return this.clientes.filter((cliente) => cliente.gerente.id === gerenteId);
+    return this.clientes.filter((cliente) => cliente.gerente === gerenteId);
   }
 
   findClienteByIdEGerenteId(
@@ -28,7 +28,7 @@ export class ClienteRepository {
     gerenteId: string,
   ): TClientes | null {
     const cliente = this.clientes.find(
-      (cliente) => cliente.id === clienteId && cliente.gerente.id === gerenteId,
+      (cliente) => cliente.id === clienteId && cliente.gerente === gerenteId,
     );
 
     return cliente;

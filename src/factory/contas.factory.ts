@@ -1,4 +1,4 @@
-import { TClientes, UserCliente } from '../model/cliente.model';
+import { TClientes} from '../model/cliente.model';
 import { ContaCorrente } from '../model/contaFeature/contaCorrente';
 import { ContaPoupanca } from '../model/contaFeature/contaPoupanca';
 import { TipoConta } from '../enum/conta.enum';

@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { ClienteService } from '../../service/cliente.service';
 import { ClienteRepository } from '../../repository/cliente.repository';
 import { User } from 'src/model/user.model';
-import { ClienteFactory } from '../..//factory/userCliente.factory';
+import { ClienteFactory } from '../../factory/cliente.factory';
 import { uuid } from 'uuidv4';
 import { TipoCliente } from '../../enum/cliente.enum';
 import { UserGerente } from '../../model/gerente.model';
@@ -45,6 +45,5 @@ describe('ClienteService', () => {
       expect(retornado.tipoCliente).toBe(TipoCliente.JURIDICO)
     }
   })
-
 
 });

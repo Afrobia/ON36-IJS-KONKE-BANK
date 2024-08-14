@@ -2,31 +2,30 @@ import { Injectable } from '@nestjs/common';
 import { TClientes } from '../model/cliente.model';
 import { ClienteRepository } from '../repository/cliente.repository';
 import { TipoCliente } from '../enum/cliente.enum';
-import { ClienteFactory } from '../factory/userCliente.factory';
-import { User } from '../model/user.model';
-import { UserGerente } from '../model/gerente.model';
+import { ClienteFactory } from '../factory/cliente.factory';
+import { CreateClienteDto } from '../dto/create-cliente.dto';
+
+
 @Injectable()
 export class ClienteService {
   constructor(
     readonly clienteFactory: ClienteFactory,
     readonly clienteRepository: ClienteRepository,
+   
   ) {}
 
   criarCliente(
     tipo: TipoCliente,
-    usuario: User,
-    gerente: UserGerente,
+    createClienteDto: CreateClienteDto,
   ): TClientes {
-    //validarGerente
-    const cliente = this.clienteFactory.criarCliente(tipo, usuario);
-    cliente.gerente = gerente
+    const cliente = this.clienteFactory.criarCliente(tipo, createClienteDto);
+   
     return this.clienteRepository.criarCliente(cliente);
   }
 
   findAllClientes(): TClientes[] {
     return this.clienteRepository.findAllClientes();
   }
-
   findClienteById(clienteId: string): TClientes {
     return this.clienteRepository.getClienteById(clienteId);
   }
@@ -39,7 +38,7 @@ export class ClienteService {
     return this.clienteRepository.findClientesByGerenteId(gerenteId);
   }
 
-  findClientebyIdeGerenteId(
+  findClientebyCadastroUnico(
     clienteId: string,
     gerenteId: string,
   ): TClientes | null {

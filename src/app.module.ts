@@ -11,12 +11,27 @@ import { ClienteModule } from './module/cliente.module';
 import { ContasService } from './service/contas.service';
 import { ContasController } from './controller/contas.controller';
 import { ClienteController } from './controller/cliente.controller';
-import { ClienteFactory } from './factory/userCliente.factory';
+import { ClienteFactory } from './factory/cliente.factory';
+import { CepValidatorAdapter } from './cep/adapter/input/cep-validator,adapter';
 
 
 @Module({
   imports: [AppModule, ContasModule, GerenteModule, ClienteModule],
-  controllers: [AppController, GerenteController, ContasController, ClienteController],
-  providers: [AppService, ClienteService, ClienteFactory, GerenteService,ContasFactory, ContasService],
+  controllers: [
+    AppController,
+    GerenteController,
+    ContasController,
+    ClienteController,
+  ],
+  providers: [
+    AppService,
+    ClienteService,
+    ClienteFactory,
+    GerenteService,
+    ContasFactory,
+    ContasService,
+    CepValidatorAdapter,
+  ],
+  exports: [CepValidatorAdapter],
 })
 export class AppModule {}

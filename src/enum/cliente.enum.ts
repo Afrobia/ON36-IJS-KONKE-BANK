@@ -1,4 +1,4 @@
 export enum TipoCliente {
-    FISICO,
-    JURIDICO,
+    FISICO = "fisico",
+    JURIDICO = "juridico",
 }
