@@ -29,7 +29,7 @@ export class ClienteFactory {
         clienteJuridico.endereco = createClienteDto.cep;
         clienteJuridico.telefone = createClienteDto.telefone;
         clienteJuridico.cnpj = createClienteDto.cadastroUnico;
-        clienteFisico.gerente = null;
+        clienteJuridico.gerente = null;
         clienteJuridico.contas = [];
         clienteJuridico.tipoCliente = TipoCliente.JURIDICO;
 

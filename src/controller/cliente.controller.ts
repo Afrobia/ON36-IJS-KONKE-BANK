@@ -6,11 +6,12 @@ import { CreateClienteDto } from '../dto/create-cliente.dto';
 import { CepValidationInterceptor } from '../cep/cep-validator.interceptor';
 
 @Controller('cliente')
-@UseInterceptors(CepValidationInterceptor)
+
 export class ClienteController {
   constructor(private clienteService: ClienteService) {}
 
   @Post()
+  @UseInterceptors(CepValidationInterceptor)
   criarCliente(@Body('tipoCliente') tipo: TipoCliente, @Body() cliente: CreateClienteDto):TClientes {
     return this.clienteService.criarCliente(tipo, cliente);
   }

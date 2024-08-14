@@ -8,10 +8,10 @@ import { CreateClienteDto } from '../dto/create-cliente.dto';
 
 @Injectable()
 export class ClienteService {
+
   constructor(
     readonly clienteFactory: ClienteFactory,
-    readonly clienteRepository: ClienteRepository,
-   
+    readonly clienteRepository: ClienteRepository
   ) {}
 
   criarCliente(
@@ -38,7 +38,7 @@ export class ClienteService {
     return this.clienteRepository.findClientesByGerenteId(gerenteId);
   }
 
-  findClientebyCadastroUnico(
+  findClientebyIdeGerenteId(
     clienteId: string,
     gerenteId: string,
   ): TClientes | null {

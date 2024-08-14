@@ -41,11 +41,11 @@ export class GerenteService {
     return this.clienteService.findClienteByGerenteId(gerenteId);
   }
 
-  /* clienteTemGerente(contaId: string, gerenteId: string): boolean {
+  clienteTemGerente(contaId: string, gerenteId: string): boolean {
     const cliente = this.clienteService.findClienteByConta(contaId);
     const gerente = this.findById(gerenteId);
 
-    if (cliente.gerente.id !== gerente.id) {
+    if (cliente.gerente !== gerente.id) {
       throw new Error('Cliente não está vinculado ao gerente');
     }
 
@@ -67,7 +67,7 @@ export class GerenteService {
   ): TipoContas {
     const cliente = this.clienteService.findClienteById(clienteId);
     const gerente = this.gerenteRepository.findGerenteById(gerenteId);
-    cliente.gerente.id = gerente.id;
+    cliente.gerente = gerente.id;
 
     return this.contasService.criarConta(tipo, cliente);
   }
@@ -80,15 +80,5 @@ export class GerenteService {
     this.contasService.removerConta(contaId);
   }
 
-  modificarTipoDeConta(
-    gerenteId: string,
-    contaId: string,
-    novoTipo: TipoConta,
-  ): TipoContas {
-    if (!this.clienteTemGerente(contaId, gerenteId)) {
-      throw new Error('Cliente não vinculado ao gerente');
-    }
 
-    return this.contasService.modificarTipoDeConta(contaId, novoTipo);
-  } */
 }
