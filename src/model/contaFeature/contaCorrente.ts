@@ -1,4 +1,4 @@
-import { Contas } from "../contas.model";
+import { Contas } from "../../model/contas.entity";
 
 
 export class ContaCorrente extends Contas{
