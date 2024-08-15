@@ -1,13 +1,11 @@
-import { UserCliente } from "../../model/cliente.model"
 import { TipoConta } from "../../enum/conta.enum"
 import { ContasFactory } from "../../factory/contas.factory"
 import { ContaCorrente } from "../../model/contaFeature/contaCorrente"
 import { ContaPoupanca } from "../../model/contaFeature/contaPoupanca"
-import { Contas } from "src/model/contas.model"
-
+import { ClienteFisico } from "../../model/user-feature/clienteFisico.model"
 
 describe('Contas factory', ()=> {
-const cliente = new UserCliente('Beatriz', 'Tão Tão distante', "6565626")  
+let cliente = new ClienteFisico()
     //criar conta conrrente
     test("Deveria criar uma conta corrente",()=>{
         
@@ -15,7 +13,7 @@ const cliente = new UserCliente('Beatriz', 'Tão Tão distante', "6565626")
         const retornado = contaFactory.criarConta(TipoConta.CORRENTE, cliente)
        
         if(retornado instanceof ContaCorrente){
-            expect(retornado.cliente).toBe(cliente);
+            expect(retornado.cliente).toBe(cliente.id);
             expect(retornado.chequeEspecial).toBe(150);
             expect(retornado.saldo).toBe(0);
 
@@ -28,7 +26,7 @@ const cliente = new UserCliente('Beatriz', 'Tão Tão distante', "6565626")
         const retornado = contaFactory.criarConta(TipoConta.POUPANCA, cliente)
        
         if(retornado instanceof ContaPoupanca){
-            expect(retornado.cliente).toBe(cliente);
+            expect(retornado.cliente).toBe(cliente.id);
             expect(retornado.taxaRendimento).toBe(0.025);
             expect(retornado.saldo).toBe(10);
 

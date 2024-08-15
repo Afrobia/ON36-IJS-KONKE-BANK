@@ -6,7 +6,7 @@ import { TipoConta } from '../../enum/conta.enum';
 import { ContaCorrente } from '../../model/contaFeature/contaCorrente';
 import { ContaPoupanca } from '../../model/contaFeature/contaPoupanca';
 import { uuid } from 'uuidv4';
-import { ClienteFisico } from '../../model/clienteFeature/clienteFisico.model';
+import { ClienteFisico } from '../../model/user-feature/clienteFisico.model';
 
 jest.mock('uuidv4');
 

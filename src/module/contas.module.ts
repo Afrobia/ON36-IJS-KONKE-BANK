@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { ContasService } from '../service/contas.service';
 import { ContasController } from '../controller/contas.controller'
 import { ContasFactory } from '../factory/contas.factory';
-import { ClienteModule } from './cliente.module';
+import { ClienteModule } from './user.module';
 import { ContasRepository } from '../repository/contas.repository';
 
 

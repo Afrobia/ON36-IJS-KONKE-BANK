@@ -10,7 +10,7 @@ import { CepValidatorAdapter } from '../cep/adapter/input/cep-validator,adapter'
 
 
 @Injectable()
-export class CreateClienteDto {
+export class CreateUserDto {
   @IsNotEmpty()
   @IsString()
   nome: string;

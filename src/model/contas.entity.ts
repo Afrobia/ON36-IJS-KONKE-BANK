@@ -1,6 +1,6 @@
-import { ContaCorrente } from "../model/contaFeature/contaCorrente";
-import { ContaPoupanca } from "../model/contaFeature/contaPoupanca";
-import { TipoConta } from "../enum/conta.enum";
+import { ContaCorrente } from '../model/contaFeature/contaCorrente';
+import { ContaPoupanca } from '../model/contaFeature/contaPoupanca';
+import { TipoConta } from '../enum/conta.enum';
 
 export abstract class Contas {
   id: string;
@@ -21,16 +21,10 @@ export abstract class Contas {
   }
 
   deposito(valor: number): number {
-    
-
     return this.saldo + valor;
   }
 
   abstract transferencia(destino: Contas, valor: number): void;
-
 }
 
-export type TipoContas = ContaCorrente | ContaPoupanca
-
-
-
+export type TipoContas = ContaCorrente | ContaPoupanca;

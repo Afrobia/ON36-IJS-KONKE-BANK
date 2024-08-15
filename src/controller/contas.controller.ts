@@ -1,8 +1,8 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { ContasService } from '../service/contas.service';
-import { TipoContas } from '../model/contas.model';
+import { TipoContas } from '../model/contas.entity';
 import { TipoConta } from '../enum/conta.enum';
-import { TClientes} from '../model/cliente.model';
+import { TUser} from '../model/user.entity';
 
 
 @Controller('contas')
@@ -10,7 +10,7 @@ export class ContasController {
   constructor(private readonly contaService: ContasService) {}
 
   @Post()
-  criarConta(@Body('tipo') tipo: TipoConta, @Body('clienteId') cliente: TClientes): TipoContas {
+  criarConta(@Body('tipo') tipo: TipoConta, @Body('clienteId') cliente: TUser): TipoContas {
     return this.contaService.criarConta(tipo, cliente);
   }
 

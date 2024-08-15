@@ -6,10 +6,10 @@ import { INestApplication } from '@nestjs/common';
 import { UserCliente } from '../../model/cliente.model';
 import { TipoConta } from '../../enum/conta.enum';
 import { ContasService } from '../../service/contas.service';
-import { ClienteService } from '../../service/cliente.service';
+import { ClienteService } from '../../service/user.service';
 import { ContasFactory } from '../../factory/contas.factory';
 import { ContasRepository } from '../../repository/contas.repository';
-import { ClienteRepository } from '../../repository/cliente.repository';
+import { ClienteRepository } from '../../repository/user.repository';
 
 describe('ContasController', () => {
   let controller: ContasController;

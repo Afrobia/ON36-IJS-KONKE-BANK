@@ -156,3 +156,5 @@ Após correção, com um código que deveria falhar
   - Escrever testes unitários para todas as classes criadas até agora (Cliente, Gerente, Conta, ContaCorrente, ContaPoupanca)
   - Desenvolver testes end-to-end para garantir que o fluxo completo do usuário funcione corretamente (exemplo: criação de cliente, abertura de conta, realização de transferência).
 
+## Desafio 06 - {Reprograma}Bank
+
