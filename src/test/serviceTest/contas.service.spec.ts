@@ -66,7 +66,7 @@ describe('ContasService', () => {
     const esperado = new ContaPoupanca();
     esperado.id = '15586';
     esperado.tipoConta = TipoConta.POUPANCA;
-    esperado.cliente = cliente.id;
+    esperado.cliente.id = cliente.id;
     esperado.saldo = 10;
     esperado.taxaRendimento = 0.025;
 

@@ -26,7 +26,7 @@ export class ContasService {
 
   validarCliente(cliente: TUser, tipoConta: TipoConta) {
     const lista = this.contasRepository.filterAllContasPorTipo(tipoConta);
-    const conta = lista.find((conta) => conta.cliente === cliente.id);
+    const conta = lista.find((conta) => conta.cliente.id === cliente.id);
 
     if (conta) {
       throw new Error('Cliente já possui conta desse tipo');
@@ -39,7 +39,7 @@ export class ContasService {
 
     this.removerConta(contaId);
 
-    return this.criarConta(novoTipo, user);
+    return this.criarConta(novoTipo, cliente);
   }
 
   removerConta(contaId: string): void {

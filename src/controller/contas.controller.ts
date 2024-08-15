@@ -10,7 +10,7 @@ export class ContasController {
   constructor(private readonly contaService: ContasService) {}
 
   @Post()
-  criarConta(@Body('tipo') tipo: TipoConta, @Body('clienteId') cliente: TUser): TipoContas {
+  criarConta(@Body('tipo') tipo: TipoConta, @Body('cliente') cliente: TUser): TipoContas {
     return this.contaService.criarConta(tipo, cliente);
   }
 

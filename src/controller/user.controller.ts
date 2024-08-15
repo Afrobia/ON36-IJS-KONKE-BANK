@@ -1,6 +1,14 @@
-import { Body, Controller, Delete, Get, Param, Post, UseInterceptors } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  UseInterceptors,
+} from '@nestjs/common';
 import { UserService } from '../service/user.service';
-import { TUser} from '../model/user.entity';
+import { TUser } from '../model/user.entity';
 import { TipoUser } from '../enum/user.enum';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { CepValidationInterceptor } from '../cep/cep-validator.interceptor';
@@ -9,28 +17,38 @@ import { CepValidationInterceptor } from '../cep/cep-validator.interceptor';
 export class UserController {
   constructor(private userService: UserService) {}
 
-  @Post()
+  @Post('cliente')
   @UseInterceptors(CepValidationInterceptor)
-  criarUser(@Param('gerenteId') gerenteId: string, @Body('tipoUser') tipo: TipoUser, @Body() user: CreateUserDto):TUser {
-    this.userService.isAutorizado(gerenteId)
-    return this.userService.criarUser(tipo, user);
+  async criarCliente(
+    @Param('gerenteId') gerenteId: string,
+    @Body('tipoUser') tipo: TipoUser.FISICO | TipoUser.JURIDICO,
+    @Body() user: CreateUserDto,
+  ): Promise<TUser> {
+    const usuario = this.userService.criarUser(tipo, user);
+    await this.userService.adicionarGerente(gerenteId, usuario);
+    await this.userService.adicionarClienteAGerente(gerenteId, usuario)
+    return usuario;
   }
 
-  @Get()
-  findAllUsers(@Param('gerenteId') gerenteId: string): TUser[] {
-    this.userService.isAutorizado(gerenteId)
-    return this.userService.findAllUsers();
+  @Post('gerente')
+  @UseInterceptors(CepValidationInterceptor)
+  criarGerente(
+    @Body('tipoUser') tipo: TipoUser.GERENTE,
+    @Body() user: CreateUserDto,
+  ): TUser {
+    return this.userService.criarUser(tipo, user);
   }
 
   @Get('id')
   findUserById(@Param('gerenteId') gerenteId: string, userId: string): TUser {
-    this.userService.isAutorizado(gerenteId)
+    this.userService.isAutorizado(gerenteId);
     return this.userService.findUserById(userId);
   }
 
   @Delete('id')
   removerUser(@Param('gerenteId') gerenteId: string, userId: string): void {
-    this.userService.isAutorizado(gerenteId)
+    this.userService.isAutorizado(gerenteId);
     return this.userService.removerUser(userId);
   }
+
 }

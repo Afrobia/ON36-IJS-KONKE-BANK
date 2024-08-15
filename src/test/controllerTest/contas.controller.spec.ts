@@ -3,23 +3,23 @@ import { ContasController } from '../../controller/contas.controller';
 import { AppModule } from '../../app.module';
 import supertest from 'supertest';
 import { INestApplication } from '@nestjs/common';
-import { UserCliente } from '../../model/cliente.model';
 import { TipoConta } from '../../enum/conta.enum';
 import { ContasService } from '../../service/contas.service';
-import { ClienteService } from '../../service/user.service';
+import { UserService } from '../../service/user.service';
 import { ContasFactory } from '../../factory/contas.factory';
 import { ContasRepository } from '../../repository/contas.repository';
-import { ClienteRepository } from '../../repository/user.repository';
+import { UserRepository } from '../../repository/user.repository';
+import { TUser } from 'src/model/user.entity';
 
 describe('ContasController', () => {
   let controller: ContasController;
-  let app: INestApplication
- 
+  let app: INestApplication 
+  let cliente: TUser
 
     beforeEach(async () => {
       const module: TestingModule = await Test.createTestingModule({
       imports:[AppModule],
-      providers:[ContasService, ClienteService, ClienteRepository, ContasFactory, ContasRepository],
+      providers:[ContasService, UserService, UserRepository, ContasFactory, ContasRepository],
       controllers:[ContasController]
     }).compile();
 
@@ -35,6 +35,7 @@ describe('ContasController', () => {
 
   test('Deveria criar uma conta ', () => {
     const tipo = TipoConta
+
     
     return supertest(app.getHttpServer())
       .post('/contas')

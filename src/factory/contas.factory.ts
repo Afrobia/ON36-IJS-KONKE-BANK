@@ -13,7 +13,7 @@ export class ContasFactory {
     switch (tipo) {
       case TipoConta.CORRENTE:
         const contaCorrente = new ContaCorrente();
-        contaCorrente.cliente = cliente.id;
+        contaCorrente.cliente.id = cliente.id;
         contaCorrente.chequeEspecial = 150;
         contaCorrente.tipoConta = TipoConta.CORRENTE;
         contaCorrente.saldo = 0;
@@ -22,7 +22,7 @@ export class ContasFactory {
 
       case TipoConta.POUPANCA:
         const contaPoupanca = new ContaPoupanca();
-        contaPoupanca.cliente = cliente.id;
+        contaPoupanca.cliente.id = cliente.id;
         contaPoupanca.taxaRendimento = 0.025;
         contaPoupanca.tipoConta = TipoConta.POUPANCA;
         contaPoupanca.saldo = 10;
