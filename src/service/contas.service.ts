@@ -39,7 +39,7 @@ export class ContasService {
 
     this.removerConta(contaId);
 
-    return this.criarConta(novoTipo, cliente);
+    return this.criarConta(novoTipo, user);
   }
 
   removerConta(contaId: string): void {

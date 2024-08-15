@@ -21,10 +21,6 @@ export class UserService {
   findUserById(userId: string): TUser {
     return this.userRepository.findUserById(userId);
   }
-
-  findUserByContaId(contaId: string): TUser {
-    return this.userRepository.findUserByContaId(contaId);
-  }
   
   removerUser(userId: string): void {
     this.userRepository.removerUser(userId);

@@ -79,4 +79,15 @@ describe('UserService', () => {
     const retornado = service.findUserById(usuario.id);
     expect(retornado).toBeNull();
   });
+
+  test('Usuario está autorizado', () => {
+    const clienteF = service.criarUser(TipoUser.FISICO, user);
+    const clienteJ = service.criarUser(TipoUser.JURIDICO, user);
+    const gerente = service.criarUser(TipoUser.GERENTE, user);
+
+    expect(clienteF.autorizado).toBe(false);
+    expect(gerente.autorizado).toBe(true);
+    expect(clienteJ.autorizado).toBe(false);
+  })
+
 });
