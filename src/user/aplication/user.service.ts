@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { TUser } from '../model/user.entity';
-import { TipoUser } from '../enum/user.enum';
-import { UserFactory } from '../factory/user.factory';
+import { TUser } from '../domain/model/user.entity';
+import { TipoUser } from '../../enum/user.enum';
 import { CreateUserDto } from '../dto/create-user.dto';
-import { UserRepository } from '../repository/user.repository';
-import { Gerente } from 'src/model/user-feature/gerente.model';
+import { Gerente } from 'src/user/domain/model/feature/gerente.model';
+import { UserFactory } from '../domain/factory/user.factory';
+import { UserRepository } from '../adapter/user.repository';
 
 @Injectable()
 export class UserService {

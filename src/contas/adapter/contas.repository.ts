@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { TipoContas } from '../model/contas.entity';
+import { TipoContas } from '../domain/model/contas.entity';
 import { uuid } from 'uuidv4';
 import { TipoConta } from 'src/enum/conta.enum';
 

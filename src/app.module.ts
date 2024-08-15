@@ -1,16 +1,17 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ContasModule } from './module/contas.module';
-import { UserService } from './service/user.service';
-import { ContasFactory } from './factory/contas.factory';
-import { UserModule } from './module/user.module';
-import { ContasService } from './service/contas.service';
-import { ContasController } from './controller/contas.controller';
-import { UserController } from './controller/user.controller';
-import { UserFactory } from './factory/user.factory';
+import { ContasModule } from './contas/contas.module';
+import { UserService } from './user/aplication/user.service';
+import { ContasFactory } from './contas/domain/factory/contas.factory';
+import { UserModule } from './user/user.module';
+import { ContasService } from './contas/aplication/contas.service';
+import { ContasController } from './contas/aplication/contas.controller';
 import { CepValidatorAdapter } from './cep/adapter/input/cep-validator,adapter';
-import { UserRepository } from './repository/user.repository';
+import { UserRepository } from './user/adapter/user.repository';
+import { UserController } from './user/aplication/user.controller';
+import { UserFactory } from './user/domain/factory/user.factory';
+
 
 
 @Module({

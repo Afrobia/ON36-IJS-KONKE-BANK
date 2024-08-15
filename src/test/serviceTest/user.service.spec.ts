@@ -1,12 +1,12 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { UserFactory } from '../../factory/user.factory';
-import { UserRepository } from '../../repository/user.repository';
-import { UserService } from '../../service/user.service';
+import { UserService } from '../../user/aplication/user.service';
 import { TipoUser } from '../../enum/user.enum';
-import { CreateUserDto } from '../../dto/create-user.dto';
-import { ClienteFisico } from '../../model/user-feature/clienteFisico.model';
-import { ClienteJuridico } from '../../model/user-feature/clienteJuridico.model';
+import { ClienteFisico } from '../../user/domain/model/feature/clienteFisico.model';
+import { ClienteJuridico } from '../../user/domain/model/feature/clienteJuridico.model';
 import { uuid } from 'uuidv4';
+import { UserRepository } from '../../user/adapter/user.repository';
+import { UserFactory } from '../../user/domain/factory/user.factory';
+import { CreateUserDto } from '../../user/dto/create-user.dto';
 
 jest.mock('uuidv4');
 

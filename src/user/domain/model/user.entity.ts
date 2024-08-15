@@ -1,8 +1,8 @@
-import { Contas } from './contas.entity';
-import { ClienteJuridico } from './user-feature/clienteJuridico.model';
-import { TipoUser } from '../enum/user.enum';
-import { ClienteFisico } from './user-feature/clienteFisico.model';
-import { Gerente } from './user-feature/gerente.model';
+import { Contas } from '../../../contas/domain/model/contas.entity';
+import { ClienteJuridico } from './feature/clienteJuridico.model';
+import { TipoUser } from '../../../enum/user.enum';
+import { ClienteFisico } from './feature/clienteFisico.model';
+import { Gerente } from './feature/gerente.model';
 
 export abstract class User {
   id: string;

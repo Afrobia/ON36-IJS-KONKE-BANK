@@ -1,8 +1,8 @@
 import { TipoConta } from '../../enum/conta.enum';
-import { ContasFactory } from '../../factory/contas.factory';
-import { ContaCorrente } from '../../model/contaFeature/contaCorrente';
-import { ContaPoupanca } from '../../model/contaFeature/contaPoupanca';
-import { ClienteFisico } from '../../model/user-feature/clienteFisico.model';
+import { ContasFactory } from '../../contas/domain/factory/contas.factory';
+import { ContaCorrente } from '../../contas/domain/model/feature/contaCorrente';
+import { ContaPoupanca } from '../../contas/domain/model/feature/contaPoupanca';
+import { ClienteFisico } from '../../user/domain/model/feature/clienteFisico.model';
 
 describe('Contas factory', () => {
   let cliente = new ClienteFisico();

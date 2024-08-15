@@ -7,11 +7,12 @@ import {
   Post,
   UseInterceptors,
 } from '@nestjs/common';
-import { UserService } from '../service/user.service';
-import { TUser } from '../model/user.entity';
-import { TipoUser } from '../enum/user.enum';
+
+import { TUser } from '../domain/model/user.entity';
+import { TipoUser } from '../../enum/user.enum';
+import { UserService } from './user.service';
+import { CepValidationInterceptor } from '../../cep/cep-validator.interceptor';
 import { CreateUserDto } from '../dto/create-user.dto';
-import { CepValidationInterceptor } from '../cep/cep-validator.interceptor';
 
 @Controller('user')
 export class UserController {
@@ -26,7 +27,7 @@ export class UserController {
   ): Promise<TUser> {
     const usuario = this.userService.criarUser(tipo, user);
     await this.userService.adicionarGerente(gerenteId, usuario);
-    await this.userService.adicionarClienteAGerente(gerenteId, usuario)
+    await this.userService.adicionarClienteAGerente(gerenteId, usuario);
     return usuario;
   }
 
@@ -50,5 +51,4 @@ export class UserController {
     this.userService.isAutorizado(gerenteId);
     return this.userService.removerUser(userId);
   }
-
 }

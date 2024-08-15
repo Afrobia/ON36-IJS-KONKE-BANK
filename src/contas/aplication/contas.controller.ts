@@ -1,8 +1,8 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
-import { ContasService } from '../service/contas.service';
-import { TipoContas } from '../model/contas.entity';
-import { TipoConta } from '../enum/conta.enum';
-import { TUser} from '../model/user.entity';
+import { ContasService } from './contas.service';
+import { TipoContas } from '../domain/model/contas.entity';
+import { TipoConta } from '../../enum/conta.enum';
+import { TUser} from '../../user/domain/model/user.entity';
 
 
 @Controller('contas')

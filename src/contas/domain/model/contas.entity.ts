@@ -1,7 +1,7 @@
-import { ContaCorrente } from '../model/contaFeature/contaCorrente';
-import { ContaPoupanca } from '../model/contaFeature/contaPoupanca';
-import { TipoConta } from '../enum/conta.enum';
-import { TUser } from './user.entity';
+import { TipoConta } from '../../../enum/conta.enum';
+import { TUser } from '../../../user/domain/model/user.entity';
+import { ContaCorrente } from './feature/contaCorrente';
+import { ContaPoupanca } from './feature/contaPoupanca';
 
 export abstract class Contas {
   id: string;

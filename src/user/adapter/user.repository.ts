@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { TUser } from '../model/user.entity';
 import { uuid } from 'uuidv4';
-import { TipoUser } from 'src/enum/user.enum';
+import { TipoUser } from '../../enum/user.enum';
+import { TUser } from '../domain/model/user.entity';
 
 @Injectable()
 export class UserRepository {

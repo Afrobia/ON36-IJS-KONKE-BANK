@@ -1,9 +1,9 @@
 import { TipoUser } from '../../enum/user.enum';
-import { CreateUserDto } from '../../dto/create-user.dto';
-import { UserFactory } from '../../factory/user.factory';
-import { ClienteFisico } from '../../model/user-feature/clienteFisico.model';
-import { ClienteJuridico } from '../../model/user-feature/clienteJuridico.model';
-import { Gerente } from '../../model/user-feature/gerente.model';
+import { ClienteFisico } from '../../user/domain/model/feature/clienteFisico.model';
+import { ClienteJuridico } from '../../user/domain/model/feature/clienteJuridico.model';
+import { Gerente } from '../../user/domain/model/feature/gerente.model';
+import { UserFactory } from '../../user/domain/factory/user.factory';
+import { CreateUserDto } from '../../user/dto/create-user.dto';
 
 describe('UserFactory', () => {
   let user = new CreateUserDto();

@@ -1,7 +1,7 @@
-import { TUser} from '../model/user.entity';
-import { ContaCorrente } from '../model/contaFeature/contaCorrente';
-import { ContaPoupanca } from '../model/contaFeature/contaPoupanca';
-import { TipoConta } from '../enum/conta.enum';
+import { TUser} from '../../../user/domain/model/user.entity';
+import { ContaCorrente } from '../model/feature/contaCorrente';
+import { ContaPoupanca } from '../model/feature/contaPoupanca';
+import { TipoConta } from '../../../enum/conta.enum';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()

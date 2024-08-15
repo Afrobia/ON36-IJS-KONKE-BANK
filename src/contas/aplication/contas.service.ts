@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { ContasFactory } from '../factory/contas.factory';
-import { ContasRepository } from '../repository/contas.repository';
-import { TUser } from '../model/user.entity';
-import { TipoContas } from '../model/contas.entity';
-import { TipoConta } from '../enum/conta.enum';
+import { ContasFactory } from '../domain/factory/contas.factory';
+import { ContasRepository } from '../adapter/contas.repository';
+import { TUser } from '../../user/domain/model/user.entity';
+import { TipoContas } from '../domain/model/contas.entity';
+import { TipoConta } from '../../enum/conta.enum';
 
 
 @Injectable()
