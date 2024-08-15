@@ -53,8 +53,7 @@ describe('ContasService', () => {
     const conta = service.criarConta(TipoConta.POUPANCA, cliente);
     const retornado = service.modificarTipoDeConta(
       conta.id,
-      TipoConta.CORRENTE,
-      cliente
+      TipoConta.CORRENTE
     );
 
     expect(retornado).toBeInstanceOf(ContaCorrente);

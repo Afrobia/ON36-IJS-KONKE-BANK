@@ -10,11 +10,14 @@ export class UserFactory {
   criarUser(
     tipo: TipoUser,
     user: CreateUserDto,
-    ): ClienteFisico | ClienteJuridico | Gerente {
+  ): ClienteFisico | ClienteJuridico | Gerente {
     switch (tipo) {
       case TipoUser.FISICO:
         const clienteFisico = new ClienteFisico();
-        clienteFisico.user = user
+        clienteFisico.nome = user.nome;
+        clienteFisico.endereco = user.cep;
+        clienteFisico.telefone = user.telefone;
+        clienteFisico.cpf = user.cadUnico;
         clienteFisico.autorizado = false;
         clienteFisico.gerente = null;
         clienteFisico.contas = [];
@@ -24,24 +27,30 @@ export class UserFactory {
 
       case TipoUser.JURIDICO:
         const clienteJuridico = new ClienteJuridico();
-        clienteJuridico.user = user
+        clienteJuridico.nome = user.nome;
+        clienteJuridico.endereco = user.cep;
+        clienteJuridico.telefone = user.telefone;
+        clienteJuridico.cnpj = user.cadUnico;
         clienteJuridico.autorizado = false;
         clienteJuridico.gerente = null;
         clienteJuridico.contas = [];
         clienteJuridico.tipoUser = TipoUser.JURIDICO;
 
         return clienteJuridico;
-      
+
       case TipoUser.GERENTE:
-        const gerente = new Gerente()
-        gerente.user = user
+        const gerente = new Gerente();
+        gerente.nome = user.nome;
+        gerente.endereco = user.cep;
+        gerente.telefone = user.telefone;
+        gerente.cadastroUnico = user.cadUnico;
         gerente.autorizado = true;
         gerente.contas = [];
-        gerente.clientes = []
+        gerente.clientes = [];
         gerente.tipoUser = TipoUser.GERENTE;
-        
+
         return gerente;
-        
+
       default:
         throw new Error('Tipo escolhido é invalido');
     }

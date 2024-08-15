@@ -5,26 +5,26 @@ import { TipoUser } from 'src/enum/user.enum';
 
 @Injectable()
 export class UserRepository {
-  static readonly users: TUser[] = [];
+  private users: TUser[] = [];
 
   constructor() {}
 
   criarUser(user: TUser): TUser {
     user.id = uuid();
-    UserRepository.users.push(user);
+    this.users.push(user);
     return user;
   }
 
   findAllUsers(): TUser[] {
-    return UserRepository.users;
+    return this.users;
   }
 
   findUsersByGerenteId(gerenteId: string): TUser[] {
-    return UserRepository.users.filter((user) => user.gerente.id === gerenteId);
+    return this.users.filter((user) => user.gerente.id === gerenteId);
   }
 
   findUserByIdEGerenteId(userId: string, gerenteId: string): TUser | null {
-    const user = UserRepository.users.find(
+    const user = this.users.find(
       (user) => user.id === userId && user.gerente.id === gerenteId,
     );
 
@@ -32,7 +32,7 @@ export class UserRepository {
   }
 
   findUserByContaId(contaId: string): TUser | null {
-    const user = UserRepository.users.find((user) => {
+    const user = this.users.find((user) => {
       return user.contas.some((conta) => conta.id === contaId);
     });
 
@@ -45,21 +45,25 @@ export class UserRepository {
     if (user.autorizado == false) {
       throw new Error('Usuario não Autorizado');
     }
-    return user
+    return user;
   }
 
   filterUserByTipo(tipo: TipoUser): TUser[] | null {
-    const users = UserRepository.users.filter((user) => user.tipoUser === tipo);
+    const users = this.users.filter((user) => user.tipoUser === tipo);
     return users;
   }
 
   findUserById(userId: string): TUser | null {
-    const user = UserRepository.users.find((user) => user.id === userId);
+    const user = this.users.find((user) => user.id === userId);
+
+    if (!user) {
+      return null;
+    }
 
     return user;
   }
 
   removerUser(userId: string): void {
-    UserRepository.users.filter((user) => user.id !== userId);
+    this.users = this.users.filter((user) => user.id !== userId);
   }
 }

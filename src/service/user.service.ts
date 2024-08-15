@@ -18,10 +18,6 @@ export class UserService {
     return this.userRepository.criarUser(usuario);
   }
 
-  findAllUsers(): TUser[] {
-    return this.userRepository.findAllUsers();
-  }
-
   findUserById(userId: string): TUser {
     return this.userRepository.findUserById(userId);
   }
