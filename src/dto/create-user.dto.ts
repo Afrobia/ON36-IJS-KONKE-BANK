@@ -27,5 +27,8 @@ export class CreateUserDto {
   telefone: string;
 
   @IsNotEmpty()
-  cadastroUnico: string;
+  cadUnico: string;
+
+
+
 }
