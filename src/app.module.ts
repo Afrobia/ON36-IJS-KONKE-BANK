@@ -10,6 +10,7 @@ import { ContasController } from './controller/contas.controller';
 import { UserController } from './controller/user.controller';
 import { UserFactory } from './factory/user.factory';
 import { CepValidatorAdapter } from './cep/adapter/input/cep-validator,adapter';
+import { UserRepository } from './repository/user.repository';
 
 
 @Module({
@@ -23,6 +24,7 @@ import { CepValidatorAdapter } from './cep/adapter/input/cep-validator,adapter';
     AppService,
     UserService,
     UserFactory,
+    UserRepository,
     ContasFactory,
     ContasService,
     CepValidatorAdapter,
