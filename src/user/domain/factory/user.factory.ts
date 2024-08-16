@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { TipoUser } from '../enum/user.enum';
-import { ClienteFisico } from '../user/domain/user-feature/clienteFisico.model';
-import { ClienteJuridico } from '../user/domain/user-feature/clienteJuridico.model';
-import { Gerente } from '../user/domain/user-feature/gerente.model';
-import { CreateUserDto } from 'src/dto/create-user.dto';
+import { CreateUserDto } from '../../dto/create-user.dto';
+import { Gerente } from '../model/feature/gerente.model';
+import { ClienteFisico } from '../model/feature/clienteFisico.model';
+import { ClienteJuridico } from '../model/feature/clienteJuridico.model';
+import { TipoUser } from '../../../enum/user.enum';
 
 @Injectable()
 export class UserFactory {

@@ -1,8 +1,6 @@
-import { Contas } from "../../model/contas.entity";
+import { Contas } from '../../model/contas.entity';
 
-
-export class ContaCorrente extends Contas{
-
+export class ContaCorrente extends Contas {
   chequeEspecial: number;
 
   getSaldo(): number {
@@ -18,5 +16,4 @@ export class ContaCorrente extends Contas{
 
     throw new Error('Saldo insuficiente para transferência.');
   }
-    
 }

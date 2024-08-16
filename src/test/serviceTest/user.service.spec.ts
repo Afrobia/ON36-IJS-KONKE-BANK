@@ -1,10 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { UserService } from '../../user/aplication/user.service';
+import { UserService } from '../../user/application/user.service';
 import { TipoUser } from '../../enum/user.enum';
 import { ClienteFisico } from '../../user/domain/model/feature/clienteFisico.model';
 import { ClienteJuridico } from '../../user/domain/model/feature/clienteJuridico.model';
 import { uuid } from 'uuidv4';
-import { UserRepository } from '../../user/adapter/user.repository';
+import { UserRepository } from '../../user/adapter/outbound/user.repository';
 import { UserFactory } from '../../user/domain/factory/user.factory';
 import { CreateUserDto } from '../../user/dto/create-user.dto';
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { TipoContas } from '../domain/model/contas.entity';
 import { uuid } from 'uuidv4';
-import { TipoConta } from 'src/enum/conta.enum';
+import { TipoConta } from '../../../enum/conta.enum';
+import { TipoContas } from '../../../contas/domain/model/contas.entity';
 
 @Injectable()
 export class ContasRepository {

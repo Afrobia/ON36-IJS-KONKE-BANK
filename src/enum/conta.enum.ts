@@ -1,7 +1,5 @@
-
 export enum TipoConta {
-    CORRENTE = 'corrente',
-    POUPANCA = 'poupanca',
-    INVESTIMENTO = 'investimento'
+  CORRENTE = 'corrente',
+  POUPANCA = 'poupanca',
+  INVESTIMENTO = 'investimento',
 }
-

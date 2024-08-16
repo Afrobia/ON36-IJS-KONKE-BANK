@@ -1,4 +1,4 @@
-import { TUser} from '../../../user/domain/model/user.entity';
+import { TUser } from '../../../user/domain/model/user.entity';
 import { ContaCorrente } from '../model/feature/contaCorrente';
 import { ContaPoupanca } from '../model/feature/contaPoupanca';
 import { TipoConta } from '../../../enum/conta.enum';
@@ -6,10 +6,7 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class ContasFactory {
-  criarConta(
-    tipo: TipoConta,
-    cliente: TUser,
-  ): ContaCorrente | ContaPoupanca {
+  criarConta(tipo: TipoConta, cliente: TUser): ContaCorrente | ContaPoupanca {
     switch (tipo) {
       case TipoConta.CORRENTE:
         const contaCorrente = new ContaCorrente();

@@ -1,12 +1,12 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ContasService } from '../../contas/aplication/contas.service';
 import { ContasFactory } from '../../contas/domain/factory/contas.factory';
-import { ContasRepository } from '../../contas/adapter/contas.repository';
 import { TipoConta } from '../../enum/conta.enum';
 import { ContaCorrente } from '../../contas/domain/model/feature/contaCorrente';
 import { ContaPoupanca } from '../../contas/domain/model/feature/contaPoupanca';
 import { uuid } from 'uuidv4';
 import { ClienteFisico } from '../../user/domain/model/feature/clienteFisico.model';
+import { ContasRepository } from '../../contas/adapter/outbound/contas.repository';
 
 jest.mock('uuidv4');
 

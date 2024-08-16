@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
-import { UserService } from './aplication/user.service';
+import { UserService } from './application/user.service';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UserRepository } from './adapter/user.repository';
 import { UserFactory } from './domain/factory/user.factory';
-import { UserController } from './aplication/user.controller';
+import { UserController } from './adapter/inbound/user.controller';
+import { UserRepository } from './adapter/outbound/user.repository';
+
 
 @Module({
   controllers: [UserController],

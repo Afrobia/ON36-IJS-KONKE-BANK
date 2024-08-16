@@ -1,15 +1,16 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ContasController } from '../../contas/aplication/contas.controller';
 import { AppModule } from '../../app.module';
 import supertest from 'supertest';
 import { INestApplication } from '@nestjs/common';
 import { TipoConta } from '../../enum/conta.enum';
 import { ContasService } from '../../contas/aplication/contas.service';
-import { UserService } from '../../user/aplication/user.service';
+import { UserService } from '../../user/application/user.service';
 import { ContasFactory } from '../../contas/domain/factory/contas.factory';
-import { ContasRepository } from '../../contas/adapter/contas.repository';
 import { TUser } from '../../user/domain/model/user.entity';
-import { UserRepository } from '../../user/adapter/user.repository';
+import { UserRepository } from '../../user/adapter/outbound/user.repository';
+import { ContasRepository } from '../../contas/adapter/outbound/contas.repository';
+import { ContasController } from '../../contas/adapter/inbound/contas.controller';
+
 
 describe('ContasController', () => {
   let controller: ContasController;

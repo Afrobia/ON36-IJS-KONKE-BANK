@@ -5,8 +5,8 @@ import {
   IsString,
   Matches,
 } from 'class-validator';
-import { IsCepValid } from '../cep/decorators/is-cep-validator.decorator';
-import { CepValidatorAdapter } from '../cep/adapter/input/cep-validator,adapter';
+import { CepValidatorAdapter } from '../../cep/adapter/inbound/cep-validator,adapter';
+import { IsCepValid } from '../../cep/decorators/is-cep-validator.decorator';
 
 
 @Injectable()

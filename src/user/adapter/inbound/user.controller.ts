@@ -7,12 +7,11 @@ import {
   Post,
   UseInterceptors,
 } from '@nestjs/common';
-
-import { TUser } from '../domain/model/user.entity';
-import { TipoUser } from '../../enum/user.enum';
-import { UserService } from './user.service';
-import { CepValidationInterceptor } from '../../cep/cep-validator.interceptor';
-import { CreateUserDto } from '../dto/create-user.dto';
+import { TUser } from '../../domain/model/user.entity';
+import { TipoUser } from '../../../enum/user.enum';
+import { CepValidationInterceptor } from '../../../cep/application/cep-validator.interceptor';
+import { CreateUserDto } from '../../dto/create-user.dto';
+import { UserService } from '../../application/user.service';
 
 @Controller('user')
 export class UserController {
