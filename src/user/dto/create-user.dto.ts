@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { IsNotEmpty, IsPhoneNumber, IsString, Matches } from 'class-validator';
-import { CepValidatorAdapter } from '../../cep/adapter/inbound/cep-validator,adapter';
-import { IsCepValid } from '../../cep/decorators/is-cep-validator.decorator';
+import { CepValidatorAdapter } from '../../infraestrutura/adapter/inbound/cep-validator,adapter';
+import { IsCepValid } from '../../infraestrutura/decorators/is-cep-validator.decorator';
 
 @Injectable()
 export class CreateUserDto {

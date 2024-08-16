@@ -6,7 +6,7 @@ import { UserService } from './user/application/user.service';
 import { ContasFactory } from './contas/domain/factory/contas.factory';
 import { UserModule } from './user/user.module';
 import { ContasService } from './contas/aplication/contas.service';
-import { CepValidatorAdapter } from './cep/adapter/inbound/cep-validator,adapter';
+import { CepValidatorAdapter } from './infraestrutura/adapter/inbound/cep-validator,adapter';
 import { UserFactory } from './user/domain/factory/user.factory';
 import { ContasController } from './contas/adapter/inbound/contas.controller';
 import { UserController } from './user/adapter/inbound/user.controller';

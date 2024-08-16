@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { TUser } from '../../domain/model/user.entity';
 import { TipoUser } from '../../../enum/user.enum';
-import { CepValidationInterceptor } from '../../../cep/application/cep-validator.interceptor';
+import { CepValidationInterceptor } from '../../../infraestrutura/application/cep-validator.interceptor';
 import { CreateUserDto } from '../../dto/create-user.dto';
 import { UserService } from '../../application/user.service';
 
