@@ -153,8 +153,27 @@ Após correção, com um código que deveria falhar
 ![Captura de tela 2024-08-09 215330](https://github.com/user-attachments/assets/63a3c046-760d-48bb-bf5e-ae3415e68c89)
 
 ### Working in progess
-  - Escrever testes unitários para todas as classes criadas até agora (Cliente, Gerente, Conta, ContaCorrente, ContaPoupanca)
-  - Desenvolver testes end-to-end para garantir que o fluxo completo do usuário funcione corretamente (exemplo: criação de cliente, abertura de conta, realização de transferência).
+  - Desenvolver testes end-to-end
 
 ## Desafio 06 - {Reprograma}Bank
 
+###  Modificações realizadas:
+
+Em comparação a semana anteriores dei uma enxugada no meu código para que ele ficasse mais limpo e de uma forma mais prática de trabalhar, implementei mais testes pra deixar o código mais seguro.
+
+- Reorganização de pastas;
+- Adição do createUserDto, para validar (class-validator) se as requisições de criação do usuário(clientes e gerentes) estão chegando no padrão do projeto;
+![Captura de tela 2024-08-16 104212](https://github.com/user-attachments/assets/b8a03b67-33a4-405f-9ad7-a890a433e7e5)
+
+
+- Adição e implementei um Interceptor um Decorator para CEP
+![Captura de tela 2024-08-16 104323](https://github.com/user-attachments/assets/c653a831-956b-4542-a18b-bab16e1f8662)
+![Captura de tela 2024-08-16 104339](https://github.com/user-attachments/assets/ebeffb16-e07e-40a5-a2b2-f1a60d13f397)
+
+- Cep como ficou a organização de entrada e saída
+![Captura de tela 2024-08-16 101049](https://github.com/user-attachments/assets/1c6423e3-9e9a-4ba5-a130-a28653bcd796)
+
+-Implementando a comunicação da API do viaCEP através do Interceptador implementando o NestInterceptor
+![Captura de tela 2024-08-16 105016](https://github.com/user-attachments/assets/648bab22-738c-49e9-b6a4-d1c2423cd5df)
+![Captura de tela 2024-08-16 104947](https://github.com/user-attachments/assets/e58e1398-8abb-4d2f-8a5c-f35f6203e780)
+![Captura de tela 2024-08-16 105001](https://github.com/user-attachments/assets/5635ae4f-014d-43c3-b955-c509c1a107f7)
