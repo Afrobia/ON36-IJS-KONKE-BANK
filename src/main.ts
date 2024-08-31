@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
-import { CepValidationInterceptor } from './cep/cep-validator.interceptor';
+import { CepValidationInterceptor } from './infraestrutura/application/cep-validator.interceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
